@@ -1,6 +1,6 @@
 @ECHO OFF
 REM Change directory to the repository
-cd /d "C:\Users\DAM1\Desktop\CompartidaVB\DAM2"
+cd /d "C:\Users\DAM2\Desktop\COMPARTIDAVB\DAM2"
 
 REM Add all changes to staging
 git add .
