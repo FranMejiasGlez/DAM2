@@ -4,6 +4,13 @@
  */
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import modelo.Estudiante;
+import modelo.EstudianteModelo;
+import vista.EstudianteVista;
+
 /**
  *
  * @author Francisco Mejias Gonzalez
@@ -20,11 +27,11 @@ public class EstudianteControlador {
     }
 
     //Registrar la vista como observer del modelo
-    modelo.addObserver (vista);
-
+    // modelo.addObserver (vista);
+    
     // Configurar listeners de la vista
-    configurarListeners();
-
+    //   configurarListeners();
+    
     private void configurarListeners() {
         // TODO: Implementar listeners para cada acción
 
@@ -78,7 +85,7 @@ public class EstudianteControlador {
         // - Campos no vacíos
         // - Email con formato correcto
         // - Curso válido
-        
+
         return true; // Temporal
     }
 

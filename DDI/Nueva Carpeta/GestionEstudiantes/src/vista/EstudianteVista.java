@@ -6,11 +6,12 @@ package vista;
 
 /**
  *
- * @author DAM2
+ * @author Francisco Mejias Gonzalez
  */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import modelo.Estudiante;
 
 // TODO: Implementar la vista principal
 public class EstudianteVista extends JFrame implements Observer {
@@ -54,8 +55,12 @@ public class EstudianteVista extends JFrame implements Observer {
 
     // TODO: Implementar más setters para otros listeners
     // Métodos para obtener datos del formulario
-    public Estudiante obtenerDatosFormulario() {
+    public Estudiante obtenerDatosFormulario(){ 
         // Crear objeto Estudiante con datos del formulario
+        String nombre,apellidos,email;
+        int id;
+        byte curso;
+        //Estudiante = new Estudiante(id,nombre,apellidos,email,curso);
         return null; // TODO: implementar
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class EstudianteModelo {
 
-    private List<Estudiante> estudiantes;
+    private List<Estudiante> estudiantes, nuevaLista;
     private List<Observer> observers;  // Para notificar cambios
 
     // Métodos CRUD:
@@ -25,11 +25,13 @@ public class EstudianteModelo {
     public boolean agregarEstudiante(Estudiante estu) {
         boolean aniadido = true;
         for (Estudiante estudiante : this.estudiantes) {
-            if (estudiante.getId().equalsIgnoreCase(estu.getId())) {
+            if (estudiante.getId() == estu.getId()) {
                 aniadido = false;
             }
         }
-        estudiantes.add(estu);
+        if (aniadido == true) {
+            estudiantes.add(estu);
+        }
         return aniadido;
     }
 
@@ -39,28 +41,42 @@ public class EstudianteModelo {
     }
 
     // - buscarPorNombre(String nombre)
-    public String buscarPorNombre(String nombre) {
+    public List buscarPorNombre(String nombre) {
         for (Estudiante estudiante : this.estudiantes) {
             if (estudiante.getNombre().equalsIgnoreCase(nombre)) {
-                return estudiante.toString();
+                nuevaLista = new ArrayList();
+                nuevaLista.add(estudiante);
             }
         }
-        return null;
+        return nuevaLista;
     }
 
     // - actualizarEstudiante(int id, Estudiante estudiante)
     public boolean actualizarEstudiante(int id, Estudiante estudiante) {
+        boolean actualizado = false;
         for (Estudiante estu : this.estudiantes) {
-            if (estu.getId().equalsIgnoreCase(estudiante.getId())) {
-                estudiante.getNombre();
-                estudiante.getApellidos();
-                estudiante.getEmail();
-                estudiante.getCurso();
+            if (estu.getId() == estudiante.getId()) {
+                estu.setNombre(estudiante.getNombre());
+                estu.setApellidos(estudiante.getApellidos());
+                estu.setEmail(estudiante.getApellidos());
+                estu.setCurso(estudiante.getCurso());
+                actualizado = true;
             }
         }
-
+        return actualizado;
     }
+
     // - eliminarEstudiante(int id)
+    public boolean eliminarEstudiante(int id) {
+        boolean eliminado = false;
+        for (Estudiante estu : this.estudiantes) {
+            if (estu.getId() == id) {
+                this.estudiantes.remove(estu);
+                eliminado = true;
+            }
+        }
+        return eliminado;
+    }
     // Métodos Observer:
     // - addObserver(Observer observer)
     // - notifyObservers()

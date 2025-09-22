@@ -4,6 +4,9 @@
  */
 package modelo;
 
+import java.util.Objects;
+import vista.EstudianteVista;
+
 /**
  *
  * @author Francisco Mejias Gonzalez
@@ -12,35 +15,37 @@ package modelo;
 public class Estudiante {
 
     // Atributos necesarios: id, nombre, apellidos, email, curso
-    private String id;
+    private int id;
     private String nombre;
     private String apellidos;
     private String email;
     private byte curso;
+    private static int contadorId = 0;
 
     // Constructor completo
-    public Estudiante(String id, String nombre, String apellidos, String email,
-            byte curso) {
-        this.id = id;// Verificar
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.email = email; //Verificar
-        this.curso = curso;
-    }
+    public Estudiante(int id, String nombre, String apellidos, String email,
+             byte curso) {
 
+        contadorId++;
+
+        this.id = contadorId;
+
+        this.nombre = nombre;
+
+        this.apellidos = apellidos;
+
+        this.email = email;
+
+        this.curso = curso;
+
+    }
     // Getters y setters
+
     /**
      * @return the id
      */
-    public String getId() {
+    public int getId() {
         return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**
@@ -118,5 +123,6 @@ public class Estudiante {
     }
 
     public int hashCode() {
+        return Objects.hash(id);
     }
 }
