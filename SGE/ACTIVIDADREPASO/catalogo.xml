@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="catalogo.xsl"?>
+<catalogo>
+    <producto>
+        <id>1</id>
+        <nombre>Laptop</nombre>
+        <precio>1200.50</precio>
+        <stock>5</stock>
+    </producto>
+    <producto>
+        <id>2</id>
+        <nombre>Mouse</nombre>
+        <precio>25.99</precio>
+        <stock>10</stock>
+    </producto>
+    <producto>
+        <id>3</id>
+        <nombre>Teclado</nombre>
+        <precio>45.00</precio>
+        <stock>7</stock>
+    </producto>
+    <producto>
+        <id>4</id>
+        <nombre>Monitor</nombre>
+        <precio>250.75</precio>
+        <stock>3</stock>
+    </producto>
+    <producto>
+        <id>5</id>
+        <nombre>Impresora</nombre>
+        <precio>150.00</precio>
+        <stock>2</stock>
+    </producto>
+</catalogo>
