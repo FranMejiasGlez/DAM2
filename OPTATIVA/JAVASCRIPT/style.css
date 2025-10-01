@@ -1,0 +1,32 @@
+.Entradas {
+    justify-self: center;
+    border-style: solid;
+    padding: 20px;
+
+}
+
+.texto {
+    justify-self: center;
+    border-style: solid;
+    padding: 5px;
+}
+
+.boton {
+    justify-self: center;
+    padding: 20px;
+}
+
+.cantidad {
+    border-style: solid;
+    padding: 10px;
+}
+
+.botonSuma {
+    justify-self: left;
+    padding: 10px;
+}
+
+.botonResta {
+    justify-self: right;
+    padding: 10px;
+}

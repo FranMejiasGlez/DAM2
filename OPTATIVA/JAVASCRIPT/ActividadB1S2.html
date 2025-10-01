@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>
+        Entradas
+    </title>
+</head>
+<div class="Entradas">
+    <div class="texto">
+        <h2>Seleccione cantidad y luego tipo de entrada</h2>
+    </div>
+    <div class="boton">
+        <button id="general" onclick="totalGeneral()" class="boton">General</button>
+    </div>
+    <div id="VIP" onclick="totalVIP()" class="boton">
+        <button class="boton">VIP</button>
+    </div>
+    <div id="infantil" onclick="totalInfantil()" class="boton">
+        <button class="boton">Infantil</button>
+    </div>
+    <div class="cantidad">
+        <button onclick="btnSuma()" class="botonSuma">+</button>
+        <div style="justify-self: left;">
+            <p id="cantidad" style="padding: 5px;">Cantidad</p>
+        </div>
+        <div onclick="total()" id="total" style="justify-self: center;">Total</div>
+        <button onclick="btnResta()" class="botonResta">-</button>
+    </div>
+    <div style="padding:10px"><button id="terminar" onclick="finalizar()" style="padding:10px">Pagar</button></div>
+</div>
+
+<body>
+    <script>
+        //DECLARACIONES 
+        const entradaGeneral = 50;
+        const entradaVIP = 100;
+        const entradaInfantil = 25;
+        let precioTotal;
+        let cantidad = 0;
+
+        //FUNCION PARA SACAR UNA ALERTA TRAS PAGAR Y CAMBIAR DE PAGINA
+        function finalizar() {
+
+            let mensajes = "";
+            for (let i = 1; i <= cantidad; i++) {
+
+                mensajes += `<p>Entrada nº ${i}</p>`;
+            }
+            alert("Compra realizada correctamente")
+            document.body.innerHTML = `<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;">
+                <h1>Gracias por su compra</h1>
+                ${mensajes}
+            </div>`;
+        }
+        //FUNCION PARA ACTUALIZAR EL BOTON DE CANTIDAD SEGUN EL BOTON DE SUMA O RESTA
+        function actualizar() {
+            document.getElementById('cantidad').innerText = cantidad;
+        }
+        //FUNCIONES PARA LOS BOTONES DE SUMA Y RESTA
+        function btnSuma() {
+            cantidad++;
+            actualizar();
+
+        }
+
+        function btnResta() {
+            if (cantidad > 0) {
+                cantidad--;
+                actualizar();
+            }
+        }
+        //FUNCIONES PARA CALCULAR EL TOTAL SEGUN EL BOTON SELECCIONADO
+        function totalGeneral() {
+            let total = entradaGeneral * cantidad;
+            document.getElementById('total').innerText = `Total: ${total}€`;
+
+        }
+        function totalVIP() {
+            let total = entradaVIP * cantidad;
+            document.getElementById('total').innerText = `Total: ${total}€`;
+
+        }
+        function totalInfantil() {
+            let total = entradaInfantil * cantidad;
+            document.getElementById('total').innerText = `Total: ${total}€`;
+
+        }
+
+    </script>
+</body>
+
+</html>
