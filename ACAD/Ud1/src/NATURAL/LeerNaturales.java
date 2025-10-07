@@ -22,23 +22,26 @@ public class LeerNaturales {
 
                 int contadorByt, byteLeido;
                 contadorByt = 0;
-                byteLeido = naturales.readInt();
+                byteLeido = naturales.readShort();
 
                 while (!finArchivo) {
+
                     try {
                         System.out.print(byteLeido + " ");
                         contadorByt++;
-                        byteLeido = naturales.readInt();
+                        byteLeido = naturales.readShort();
                         if (contadorByt % 10 == 0) {
                             System.out.println();
                         }
+
                     } catch (EOFException eof) {
                         System.out.println("\nFin de archivo");
-                        finArchivo = !finArchivo;
+                        finArchivo = true;
                     }
+
                 }
 
-                System.out.println("\nTotal de bytes leídos: " + contadorByt);
+                System.out.println("\nTotal de bytes leídos: " + contadorByt * 2);
 
             } catch (IOException ioe) {
                 System.out.println("Error al leer el archivo");
@@ -52,7 +55,7 @@ public class LeerNaturales {
             }
 
         } catch (IOException ioe) {
-            System.out.println("Error de E/S al abrir el archivo");
+            System.out.println("Error al abrir el archivo");
         }
     }
 }

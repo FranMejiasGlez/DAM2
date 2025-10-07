@@ -22,13 +22,14 @@ public class Naturales {
             DataOutputStream numerosNaturales = new DataOutputStream(archivo);
 
             for (int i = 0; i < 500; i++) {
-                numerosNaturales.writeInt(i);
+                numerosNaturales.writeShort(i);
             }
+            System.out.println("Total escrito: " + numerosNaturales.size() + " bytes");
             archivo.close();
             numerosNaturales.close();
 
         } catch (IOException ioe) {
-
+            System.out.println("Error al abrir archivo");
         }
     }
 }
