@@ -1,0 +1,24 @@
+.botonera {
+    border-style: solid;
+    justify-self: center;
+    padding: 10px;
+    margin-bottom: 5px
+}
+
+.botones {}
+
+.bloqueTareas {
+    border-style: solid;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.tarea {
+    border-style: dotted;
+    box-sizing: border-box;
+    width: 80vw;
+    justify-self: center;
+    margin-bottom: 10px;
+    margin-top: 10px
+}

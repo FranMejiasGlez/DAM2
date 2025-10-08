@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="ActividadB103.css">
+    <html>
+    <title>To do list</title>
+</head>
+
+<body>
+    <div class="botonera">
+        <button id="AgregarTarea" class="botones">Agregar tarea</button>
+
+        <form id="formulario" style="display: none;">
+            <h3>Formulario Tarea</h3>
+            <label>Nombre:</label>
+            <input type="text" name="nombre"><br><br>
+            <label>Descripcion:</label>
+            <input type="text" name="descripcion"><br><br>
+            <button type="submit">Enviar</button>
+        </form>
+        <!--<button id="BorrarTarea" class="botones">Borrar tarea</button>-->
+    </div>
+    <div class="bloqueTareas">
+        <div class="tarea"></div>
+    </div>
+    <script>
+
+        //Declaraciones
+        const boton = document.getElementById("AgregarTarea");
+        const formulario = document.getElementById("formulario");
+        const formularioInputs = formulario.elements;
+        const bloqueTareas = document.querySelector(".bloqueTareas");
+        
+        // Cargar tareas desde localStorage al iniciar
+        let listaTareas = JSON.parse(localStorage.getItem('tareas')) || [];
+
+        // Mostrar tareas al cargar la página
+        document.addEventListener('DOMContentLoaded', mostrarTareas);
+
+        // Función para guardar tareas en localStorage
+        function guardarTareas() {
+            localStorage.setItem('tareas', JSON.stringify(listaTareas));
+        }
+
+        //funcion para mostrar formulario
+        boton.addEventListener("click", () => {
+            if (formulario.style.display === "none") {
+                formulario.style.display = "block";
+                boton.textContent = "Cerrar Formulario";
+            } else {
+                formulario.style.display = "none";
+                boton.textContent = "Agregar Tarea";
+            }
+        })
+
+        //funcion para que los datos del formulario se incluyan en la tarea
+        formulario.addEventListener("submit", (e) => {
+            const tarea = {
+                nombre: formularioInputs["nombre"].value,
+                descripcion: formularioInputs["descripcion"].value,
+            };
+            listaTareas.push(tarea);
+            guardarTareas();
+            mostrarTareas();
+            e.preventDefault();
+        });
+
+        //Funcion para mostrar las tareas del Array
+        function mostrarTareas() {
+            bloqueTareas.innerHTML = ""; // Limpiar contenido antes de agregar
+
+            listaTareas.forEach((tarea, index) => {
+                const divTarea = document.createElement("div");
+                divTarea.className = "tarea desplegable";
+
+                divTarea.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button class="eliminar-btn" data-index="${index}" style="background: red; color: white; border: none; padding: 5px 10px;cursor: pointer;">Eliminar</button>
+        <input type="checkbox" class="tarea-check">
+    </div>
+    <h3 class="tarea-titulo" style="text-align: center; font-size: 20px; margin: 10px 0;">
+        ${tarea.nombre}
+    </h3>
+    <div class="tarea-contenido" style="text-align: center;">
+        <p>${tarea.descripcion}</p>
+    </div>
+`;
+
+                bloqueTareas.appendChild(divTarea);
+            });
+
+            // Agregar event listeners para los botones de eliminar
+            document.querySelectorAll('.eliminar-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = e.target.getAttribute('data-index');
+                    listaTareas.splice(index, 1);
+                    guardarTareas();
+                    mostrarTareas();
+                });
+            });
+        };
+
+    </script>
+</body>
+
+</html>
