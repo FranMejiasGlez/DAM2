@@ -5,12 +5,13 @@
     margin-bottom: 5px
 }
 
-.botones {}
-
 .bloqueTareas {
     border-style: solid;
-    width: 100vw;
+    width: calc(100vw - 200px); /* 100px margen izquierdo + 100px margen derecho */
     height: 100vh;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
     box-sizing: border-box;
 }
 
