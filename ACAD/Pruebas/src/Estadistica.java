@@ -8,10 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Mejias Gonzalez Francisco
@@ -24,7 +20,7 @@ public class Estadistica {
         DataInputStream ficheroDatos;
         BufferedReader teclado;
         byte numero, total = 0;
-        byte frecuencias[] = new byte[11];
+        byte frecuencias[] = new byte[10];
         try {
             fichero = new DataOutputStream(
                     new FileOutputStream("./src/Frecuencia.dat"));
@@ -48,7 +44,7 @@ public class Estadistica {
                 ficheroDatos = new DataInputStream(new FileInputStream("./src/Frecuencia.dat"));
 
                 while (true) {
-                    numero = (byte) ficheroDatos.readUnsignedByte();
+                    numero = (byte) ficheroDatos.readByte();
                     System.out.println(numero);
                     frecuencias[numero]++;
                 }
@@ -63,6 +59,7 @@ public class Estadistica {
                 }
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
