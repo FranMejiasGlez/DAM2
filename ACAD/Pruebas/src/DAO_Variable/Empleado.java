@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package DAO_Variable;
 
 /**
  *
@@ -14,8 +14,12 @@ public class Empleado {
     public String nombre;
     public String apellidos;
     public float sueldo;
-    
-    public Empleado(){
+
+    public Empleado(int id, String nombre, String apellidos, float sueldo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.sueldo = sueldo;
     }
 
     /**
@@ -73,6 +77,4 @@ public class Empleado {
     public void setSueldo(float sueldo) {
         this.sueldo = sueldo;
     }
-    
-    
 }
