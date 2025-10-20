@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO_Variable;
+package DAO_Fijo;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -23,7 +23,7 @@ public class EmpleadosMain {
     public static void main(String[] args) {
         byte opcion, id = 0;
         opcion = -1;
-        String fichero = ("empleados.dat");
+        String fichero = ("empleadosfijo.dat");
         String nombre, apellidos;
         float sueldo = 0;
         boolean numeroCorrecto;
@@ -47,7 +47,9 @@ public class EmpleadosMain {
                 try {
 
                     switch (opcion) {
-                        case 1:
+                        case 1: //ESCRIBIR EN FICHERO
+                            StringBuilder nombreFijo,
+                             apellidosFijos;
                             File fich = new File(fichero);
                             if (fich.exists()) {
 
@@ -66,15 +68,28 @@ public class EmpleadosMain {
                                     System.out.println("Introduce id: ");
                                     id = Byte.parseByte(teclado.readLine());
                                 } catch (NumberFormatException nfe1) {
-                                    System.out.println("Numero no valido, teclee otro..");
+                                    System.out.println("Numero no valido,"
+                                            + " teclee otro..");
                                     numeroCorrecto = false;
                                 }
                             } while (numeroCorrecto == false || id < 1);
-
-                            System.out.println("Introduce Nombre: ");
-                            nombre = teclado.readLine().trim();
-                            System.out.println("Introduce Apellidos: ");
-                            apellidos = teclado.readLine().trim();
+                            do {
+                                System.out.println("Introduce Nombre"
+                                        + ":(maximo 10 caracteres) ");
+                                //Convierto en string fijo de 20 caracteres
+                                nombre = teclado.readLine().trim();
+                                nombreFijo = new StringBuilder(nombre);
+                                nombreFijo.setLength(20);
+                                nombre = nombreFijo.toString();
+                            } while (nombre.length() > 20);
+                            do {
+                                System.out.println("Introduce Apellidos"
+                                        + ":(maximo 30 caracteres)");
+                                apellidos = teclado.readLine().trim();
+                                apellidosFijos = new StringBuilder(apellidos);
+                                apellidosFijos.setLength(30);
+                                apellidos = apellidosFijos.toString();
+                            } while (apellidos.length() > 60);
                             do {
                                 try {
                                     numeroCorrecto = true;
@@ -95,18 +110,18 @@ public class EmpleadosMain {
                                     + "correctamente.");
                             break;
 
-                        case 2:
+                        case 2: //LEER FICHERO COMPLETO
                             System.out.println("Leyendo todo el fichero...");
-                            DataInputStream dataReadAll = new DataInputStream(
+                            DataInputStream dataRead = new DataInputStream(
                                     new FileInputStream(fichero));
                             Empleado empleado;
-                            while ((empleado = EmpleadosDAO.leer(dataReadAll))
+                            while ((empleado = EmpleadosDAO.leer(dataRead))
                                     != null) {
                                 if (!EmpleadosDAO.ff) {
                                     System.out.println(empleado.toString());
                                 }
                             }
-                            dataReadAll.close();
+                            dataRead.close();
                             EmpleadosDAO.ff = false; // Resetear flag
                             break;
 

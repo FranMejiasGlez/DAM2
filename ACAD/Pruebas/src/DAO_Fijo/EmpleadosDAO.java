@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO_Variable;
+package DAO_Fijo;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,17 +21,33 @@ public class EmpleadosDAO {
     public EmpleadosDAO() {
     }
 
-    public static Empleado leer(DataInputStream data) throws FileNotFoundException, IOException {
+    public static Empleado leer(DataInputStream data)
+            throws FileNotFoundException, IOException {
         int id;
         String nombre, apellidos;
+        char caracterNombre, caracterApellidos;
         float sueldo;
         Empleado emple = null;
         try {
             //Leer Datos de Registro Empleado (Objeto)
+            nombre = "";
+            apellidos = "";
             EmpleadosDAO.ff = false;
             id = data.readInt();
-            nombre = data.readUTF();
-            apellidos = data.readUTF();
+            //Construccion del nombre y apellidos caracter a caracter
+            for (int i = 1; i <= 20; i++) {
+                caracterNombre = data.readChar();
+                nombre = nombre + caracterNombre;
+            }
+            nombre = nombre.trim();
+
+            for (int i = 1; i <= 60; i++) {
+
+                caracterApellidos = data.readChar();
+                apellidos = apellidos + caracterApellidos;
+            }
+            apellidos = apellidos.trim();
+
             sueldo = data.readFloat();
             emple = new Empleado(id, nombre, apellidos, sueldo);
         } catch (EOFException eofe) {
@@ -45,11 +61,18 @@ public class EmpleadosDAO {
 
 
         try {
-
+            StringBuilder escribeNombre, escribeApellidos;
             //Escribir ,datos para Registro Empleado(Objeto)
             data.writeInt(reg.getId());
-            data.writeUTF(reg.getNombre());
-            data.writeUTF(reg.getApellidos());
+
+            escribeNombre = new StringBuilder(reg.getNombre().trim());
+            escribeNombre.setLength(20);
+            data.writeChars(escribeNombre.toString());
+
+            escribeApellidos = new StringBuilder(reg.getApellidos().trim());
+            escribeApellidos.setLength(60);
+            data.writeChars(escribeApellidos.toString());
+            
             data.writeFloat(reg.getSueldo());
 
         } catch (IOException ioe) {

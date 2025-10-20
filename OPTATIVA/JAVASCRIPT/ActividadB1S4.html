@@ -1,130 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="ActividadB1S4.css" />
+    <title>Calculadora</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="ActividadB1S4.css">
-    <title>
-        Calculadora
-    </title>
-</head>
-
-<body>
+  <body>
     <div class="calculator">
-        <input class="display" type="text" id="display" readonly>
+      <input class="display" type="text" id="display" readonly style="font-size: large" />
 
-        <table class="calc-table">
-            <tr>
-                <td><button class="button" onclick="buildNumber(1)">1</button></td>
-                <td><button class="button" onclick="buildNumber(2)">2</button></td>
-                <td><button class="button" onclick="buildNumber(3)">3</button></td>
-                <td><button class="button" onclick="buildNumber(4)">4</button></td>
-            </tr>
-            <tr>
-                <td><button class="button" onclick="buildNumber(5)">5</button></td>
-                <td><button class="button" onclick="buildNumber(6)">6</button></td>
-                <td><button class="button" onclick="buildNumber(7)">7</button></td>
-                <td><button class="button" onclick="buildNumber(8)">8</button></td>
-            </tr>
-            <tr>
-                <td><button class="button" onclick="buildNumber(9)">9</button></td>
-                <td><button class="button" onclick="buildNumber(0)">0</button></td>
-                <td><button class="button" onclick="intercambio('*')">*</button></td>
-                <td><button class="button" onclick="intercambio('-')">-</button></td>
-            </tr>
-            <tr>
-                <td><button class="button" onclick="intercambio('+')">+</button></td>
-                <td><button class="button" onclick="buildNumber('.')">.</button></td>
-                <td><button class="button" onclick="calcular()">=</button></td>
-                <td><button class="button" onclick="intercambio('/')">/</button></td>
-            </tr>
-            <tr>
-                <td colspan="4"><button style="width:100%" id="C">C</button></td>
-            </tr>
-        </table>
-
-
-    </div>
+      <table class="calc-table">
+        <tr>
+          <td>
+            <button class="button" onclick="construirNumero('1')">1</button>
+          </td>
+          <td>
+            <button class="button" onclick="construirNumero('2')">2</button>
+          </td>
+          <td>
+            <button class="button" onclick="construirNumero('3')">3</button>
+          </td>
+          <td><button class="button" onclick="intercambio('+')">+</button></td>
+        </tr>
+        <tr>
+          <td>
+            <button class="button" onclick="construirNumero('4')">4</button>
+          </td>
+          <td>
+            <button class="button" onclick="construirNumero('5')">5</button>
+          </td>
+          <td>
+            <button class="button" onclick="construirNumero('6')">6</button>
+          </td>
+          <td><button class="button" onclick="intercambio('-')">-</button></td>
+        </tr>
+        <tr>
+          <td>
+            <button class="button" onclick="construirNumero('7')">7</button>
+          </td>
+          <td>
+            <button class="button" onclick="construirNumero('8')">8</button>
+          </td>
+          <td>
+            <button class="button" onclick="construirNumero('9')">9</button>
+          </td>
+          <td><button class="button" onclick="intercambio('*')">*</button></td>
+        </tr>
+        <tr>
+          <td>
+            <button class="button" onclick="construirNumero('0')">0</button>
+          </td>
+          <td>
+            <button class="button" onclick="construirNumero('.')">.</button>
+          </td>
+          <td><button class="button" onclick="calcular()">=</button></td>
+          <td><button class="button" onclick="intercambio('/')">/</button></td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <button style="width: 100%" onclick="limpiar()">C</button>
+          </td>
+        </tr>
+      </table>
     </div>
     <script>
-        let displayValue = '';
-        let esSegundoNumero = false;
-        let numero1 = 0;
-        let numero2 = 0;
-        let simbolo = "+";
-        let resultado;
+      let numeroActual
+      let numeroAnterior
+      let resultado
+      let simbolo = '+'
+      let expresionCompleta = ''
 
+      function construirNumero(numero) {
+        const display = document.getElementById('display')
 
-        function buildNumber(numero) {
-            if (numero2 === 0) {
-                numero2 = numero;
-            } else {
-                numero2 = '' + numero2 + numero;
+        // Si hay resultado previo, limpiar todo para nueva operación
+        if (resultado !== undefined) {
+          limpiar()
+        }
+
+        // Restricción para punto decimal
+        if (numero === '.' && numeroActual && numeroActual.includes('.')) {
+          return
+        }
+
+        // Si es punto y no hay número actual, empezar con "0."
+        if (
+          numero === '.' &&
+          (numeroActual === undefined || numeroActual === '')
+        ) {
+          numeroActual = '0.'
+          expresionCompleta += '0.'
+        }
+        // Si es punto y hay número actual sin punto
+        else if (numero === '.' && !numeroActual.includes('.')) {
+          numeroActual += '.'
+          expresionCompleta += '.'
+        }
+        // Si es dígito normal
+        else if (numero !== '.') {
+          if (numeroActual === undefined) {
+            numeroActual = numero
+            expresionCompleta += numero
+          } else {
+            numeroActual += numero
+            expresionCompleta += numero
+          }
+        }
+
+        // Mostrar la expresión completa
+        display.value = expresionCompleta
+      }
+
+      function intercambio(operador) {
+        const display = document.getElementById('display')
+
+        // Si hay resultado de operación anterior, usarlo como numeroAnterior
+        if (resultado !== undefined) {
+          numeroAnterior = resultado
+          resultado = undefined
+          expresionCompleta = numeroAnterior.toString() // ← ESTA ERA LA CLAVE
+        }
+        // Si hay número actual, convertirlo en anterior
+        else if (numeroActual !== undefined) {
+          numeroAnterior = parseFloat(numeroActual)
+          numeroActual = undefined
+        }
+
+        simbolo = operador
+
+        // Agregar operador a la expresión
+        if (expresionCompleta !== '' && !expresionCompleta.endsWith(' ')) {
+          expresionCompleta += ' ' + operador + ' '
+        } else {
+          expresionCompleta += operador + ' '
+        }
+
+        // Mostrar expresión actualizada
+        display.value = expresionCompleta
+      }
+
+      function calcular() {
+        const display = document.getElementById('display')
+
+        // Validar que tenemos todo para calcular
+        if (
+          numeroAnterior === undefined ||
+          numeroActual === undefined ||
+          !simbolo
+        ) {
+          return
+        }
+
+        const num1 = parseFloat(numeroAnterior)
+        const num2 = parseFloat(numeroActual)
+
+        // Realizar cálculo
+        switch (simbolo) {
+          case '+':
+            resultado = num1 + num2
+            break
+          case '-':
+            resultado = num1 - num2
+            break
+          case '*':
+            resultado = num1 * num2
+            break
+          case '/':
+            if (num2 === 0) {
+              alert('Error: No se puede dividir por cero')
+              limpiar()
+              return
             }
-            pintarDisplay(numero1, simbolo, numero2);
-        }
-        function intercambio(operador) {
-            simbolo = operador;
-            calcular()
-            numero1 = resultado;
-            numero2 = 0;
+            resultado = num1 / num2
+            break
+          default:
+            break
         }
 
+        // SOLO MOSTRAR EL RESULTADO (limpiar pantalla)
+        display.value = resultado
 
+        // Preparar para siguiente operación
+        numeroAnterior = resultado
+        numeroActual = undefined
+        expresionCompleta = resultado.toString() // Guardar el resultado para continuar operando
+      }
 
+      function limpiar() {
+        const display = document.getElementById('display')
+        numeroActual = undefined
+        numeroAnterior = undefined
+        resultado = undefined
+        simbolo = '+'
+        expresionCompleta = ''
+        display.value = '0'
+      }
 
-
-
-        function limpiar() {
-            numero1 = 0;
-            numero2 = 0;
-            simbolo = "";
-            display.value = '';
-        }
-
-        function pintarDisplay(numero1, simbolo, numero2) {
-            const display = document.getElementById('display');
-
-            // Clear display first
-            display.value = '';
-
-            // Set the complete expression
-            if (numero1 === 0) {
-                display.value = ` ${numero2}`;
-            } else {
-                display.value = `${numero1} ${simbolo} ${numero2}`;
-            }
-
-        }
-
-        function calcular() {
-            numero2 = parseFloat(numero2);
-            switch (simbolo) {
-                case "+":
-                    resultado = numero1 + numero2;
-                    break;
-                case "-":
-                    resultado = numero1 - numero2;
-                    break;
-                case "*":
-                    resultado = numero1 * numero2;
-                    break;
-                case "/":
-                    resultado = numero1 / numero2;
-                    break;
-                default:
-                    break;
-            }
-            pintarDisplay(numero1, simbolo, numero2);
-        }
-
-
-
-
-
-
-
+      // Inicializar display
+      document.getElementById('display').value = '0'
     </script>
-</body>
-
+  </body>
 </html>
