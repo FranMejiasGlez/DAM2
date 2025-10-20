@@ -4,14 +4,11 @@
  */
 package DAO_Variable;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
+import java.io.EOFException;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  *
@@ -30,22 +27,19 @@ public class EmpleadosDAO {
         float sueldo;
         Empleado emple = null;
         try {
-            if (ff) {
-                //Leer Datos de Registro Empleado (Objeto)
-                id = data.readInt();
-                nombre = data.readUTF();
-                apellidos = data.readUTF();
-                sueldo = data.readFloat();
-                emple = new Empleado(id, nombre, apellidos, sueldo);
-            } else {
-                System.out.println("Fin de fichero");
-            }
-        }catch(EndOfFileException eofe){
+            //Leer Datos de Registro Empleado (Objeto)
+            EmpleadosDAO.ff = false;
+            id = data.readInt();
+            nombre = data.readUTF();
+            apellidos = data.readUTF();
+            sueldo = data.readFloat();
+            emple = new Empleado(id, nombre, apellidos, sueldo);
+        } catch (EOFException eofe) {
+            ff = true;
+            System.out.println("Fin de fichero");
         }
-            return emple;
-        }
-
-    
+        return emple;
+    }
 
     public static void escribir(DataOutputStream data, Empleado reg) {
 

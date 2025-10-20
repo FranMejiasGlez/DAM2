@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO_Variable;
 
 /**
@@ -20,6 +17,16 @@ public class Empleado {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.sueldo = sueldo;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{"
+                + "id=" + id
+                + ", nombre='" + nombre + '\''
+                + ", apellidos='" + apellidos + '\''
+                + ", sueldo=" + sueldo +" €"
+                + '}';
     }
 
     /**

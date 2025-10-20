@@ -70,10 +70,14 @@ public class EmpleadosMain {
 
                             //Escribir en el registro
                             EmpleadosDAO.escribir(dataWrite, reg);
+                            dataWrite.close();
+                            System.out.println("Registro guardado correctamente.");
                             break;
                         case 2:
+
                             DataInputStream dataRead = new DataInputStream(new FileInputStream(fichero));
-                            System.out.println("Leyendo ultimo registro... ");
+                            System.out.println("Leyendo registro... ");
+
                             System.out.println(EmpleadosDAO.leer(dataRead));
 
 
