@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Gaming Mice</title>
+    <script src="Tienda.js" defer></script>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="div1">
+            <div class="div1" id="carrito">
+                <h1>Carrito</h1>
+            </div>
+            <button onclick="vaciarCarrito()">Vaciar carrito</button>
+            <button id="total" onclick="calcularTotal()">Click para ver el Total</button>
+        </div>
+        <div id="contenedor-ratones" class="div2">
+            <h1 style="text-align: center;">🖱️Tienda de Ratones Gaming</h1>
+
+            <div id="filtros" style="justify-self: center;padding:1%;">
+                <button onclick="mostrarTodos()">Todos</button>
+                <button onclick="filtrarInalambricos()">Inalámbricos</button>
+                <button onclick="filtrarGaming()">Gaming</button>
+                <button onclick="filtrarConStock()">En Stock</button>
+            </div>
+
+            <div id="ratones-container" class="ratones-container">
+                <!--Tarjetas de ratones -->
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
