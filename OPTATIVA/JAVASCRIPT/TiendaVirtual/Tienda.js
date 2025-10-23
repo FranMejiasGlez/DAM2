@@ -1,6 +1,6 @@
 //Clase Raton
 class Raton {
-    constructor(nombre, precio, marca, tipoConexion, dpi, botones, color, inalambrico, stock = 0) {
+    constructor(nombre, precio, marca, tipoConexion, dpi, botones, color, inalambrico, stock) {
         this.nombre = nombre;
         this.precio = precio;
         this.marca = marca;
@@ -34,8 +34,12 @@ class Raton {
             📡 Conexión: ${this.tipoConexion} ${this.inalambrico ? '(Inalámbrico)' : '(Cableado)'}
             📦 Stock: ${this.stock} uds`
     };
-
-    // Métodos útiles para la tienda
+    setStockEliminar() {
+        this.stock--;
+    }
+    setStockAgregar() {
+        this.stock++;
+    }
     tieneStock() {
         return this.stock > 0;
     }
@@ -82,19 +86,40 @@ const inventarioRatones = [
 
 const carrito = [];
 
+//Verificar el presupuesto
 function aniadirCarrito(Raton) {
-    carrito.push(Raton);
-    mostrarCarrito();
+    var presupuesto = 100;
+    var total = calcularTotal();
+
+    if (presupuesto - total > 0) {
+        if (Raton.tieneStock()) {
+            carrito.push(Raton);
+            Raton.setStockEliminar();
+            calcularTotal();
+            mostrarCarrito();
+            mostrarRatones();
+        } else {
+            alert("No hay stock de este producto.")
+        }
+    } else {
+        alert("Presupuesto maximo de 100 €")
+    }
+
 }
+
 
 function eliminarDeCarrito(raton) {
     const indice = carrito.indexOf(raton);
     carrito.splice(indice, 1);
+    raton.setStockAgregar();
+    calcularTotal();
     mostrarCarrito();
+    mostrarRatones();
 }
 
 function vaciarCarrito() {
     carrito.length = 0;
+    document.getElementById('total').textContent = `0.00 €`;
     mostrarCarrito();
 }
 
@@ -149,8 +174,10 @@ function mostrarCarrito() {
 function calcularTotal() {
     var total = 0;
     carrito.forEach(Raton => {
-        total = total + 10;
+        total = total + Raton.getPrecio();
+
     });
+    total = total.toFixed(2);
     document.getElementById('total').textContent = `${total}  €`;
 }
 
