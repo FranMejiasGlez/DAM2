@@ -70,41 +70,49 @@ class Raton {
     }
 }
 
+
 // Array de ratones para la tienda - DEBE IR DESPUÉS DE LA CLASE
 const inventarioRatones = [
-    new Raton("Logitech G502 Hero", 79.99, "Logitech", "USB", 25600, 11, "Negro", false, 12),
-    new Raton("Razer DeathAdder V2", 69.99, "Razer", "USB", 20000, 8, "Negro, Verde", false, 8),
-    new Raton("Logitech MX Master 3", 99.99, "Logitech", "Wireless", 4000, 7, "Gris, Grafito", true, 15),
-    new Raton("SteelSeries Rival 3", 29.99, "SteelSeries", "USB", 8500, 6, "Blanco", false, 20),
-    new Raton("Corsair Dark Core RGB/SE", 89.99, "Corsair", "Wireless", 18000, 8, "Negro RGB", true, 6),
-    new Raton("Microsoft Classic Intellimouse", 39.99, "Microsoft", "USB", 3200, 5, "Blanco", false, 30),
-    new Raton("Razer Viper Ultimate", 149.99, "Razer", "Wireless", 20000, 8, "Negro, Mercurio", true, 4),
+    new Raton("Logitech G502 Hero", 39.99, "Logitech", "USB", 25600, 11, "Negro", false, 12),
+    new Raton("Razer DeathAdder V2", 19.99, "Razer", "USB", 20000, 8, "Negro, Verde", false, 8),
+    new Raton("Logitech MX Master 3", 69.99, "Logitech", "Wireless", 4000, 7, "Gris, Grafito", true, 15),
+    new Raton("SteelSeries Rival 3", 9.99, "SteelSeries", "USB", 8500, 6, "Blanco", false, 20),
+    new Raton("Corsair Dark Core RGB/SE", 29.99, "Corsair", "Wireless", 18000, 8, "Negro RGB", true, 6),
+    new Raton("Microsoft Classic Intellimouse", 19.99, "Microsoft", "USB", 3200, 5, "Blanco", false, 30),
+    new Raton("Razer Viper Ultimate", 9.99, "Razer", "Wireless", 20000, 8, "Negro, Mercurio", true, 4),
     new Raton("HP X1000", 19.99, "HP", "USB", 1600, 3, "Negro", false, 50),
-    new Raton("Logitech G Pro Wireless", 129.99, "Logitech", "Wireless", 25600, 8, "Negro", true, 7),
+    new Raton("Logitech G Pro Wireless", 100.00, "Logitech", "Wireless", 25600, 8, "Negro", true, 7),
     new Raton("Redragon Cobra M711", 24.99, "Redragon", "USB", 10000, 7, "Negro, RGB", false, 25)
 ];
 
 const carrito = [];
 
 //Verificar el presupuesto
+const PRESUPUESTO_MAXIMO = 100;
+
 function aniadirCarrito(Raton) {
-    var presupuesto = 100;
-    var total = calcularTotal();
 
-    if (presupuesto - total > 0) {
-        if (Raton.tieneStock()) {
-            carrito.push(Raton);
-            Raton.setStockEliminar();
-            calcularTotal();
-            mostrarCarrito();
-            mostrarRatones();
-        } else {
-            alert("No hay stock de este producto.")
-        }
-    } else {
-        alert("Presupuesto maximo de 100 €")
+    //Llevar la cuenta de cuanto dinero tiene el carrito.
+    var totalActual = 0;
+    carrito.forEach(Raton => {
+        totalActual += Raton.getPrecio();
+    });
+
+    // Verificar si agregar este producto superaría el presupuesto
+    if (totalActual + Raton.getPrecio() > PRESUPUESTO_MAXIMO) {
+        alert(`Presupuesto máximo de ${PRESUPUESTO_MAXIMO} €. Te quedan ${(PRESUPUESTO_MAXIMO - totalActual).toFixed(2)} € disponibles.`);
+        return; //Return para que no se agrege aunque ese ultimo producto se pase del presupuesto
     }
-
+    //Si existe stock del producto se agrega 
+    if (Raton.tieneStock()) {
+        carrito.push(Raton);
+        Raton.setStockEliminar();
+        calcularTotal();
+        mostrarCarrito();
+        mostrarRatones();
+    } else {
+        alert("No hay stock de este producto.");
+    }
 }
 
 
@@ -118,9 +126,13 @@ function eliminarDeCarrito(raton) {
 }
 
 function vaciarCarrito() {
-    carrito.length = 0;
-    document.getElementById('total').textContent = `0.00 €`;
-    mostrarCarrito();
+    if (carrito.length > 0) {
+        carrito.length = 0;
+        document.getElementById('total').textContent = `0.00 €`;
+        mostrarCarrito();
+    } else {
+        alert("El carrito ya está vacío.")
+    }
 }
 
 function mostrarRatones() {

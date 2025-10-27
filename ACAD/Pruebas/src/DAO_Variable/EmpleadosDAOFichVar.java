@@ -14,11 +14,11 @@ import java.io.IOException;
  *
  * @author Mejias Gonzalez Francisco
  */
-public class EmpleadosDAO {
+public class EmpleadosDAOFichVar {
 
     public static boolean ff = false;
 
-    public EmpleadosDAO() {
+    public EmpleadosDAOFichVar() {
     }
 
     public static Empleado leer(DataInputStream data) throws FileNotFoundException, IOException {
@@ -28,7 +28,7 @@ public class EmpleadosDAO {
         Empleado emple = null;
         try {
             //Leer Datos de Registro Empleado (Objeto)
-            EmpleadosDAO.ff = false;
+            EmpleadosDAOFichVar.ff = false;
             id = data.readInt();
             nombre = data.readUTF();
             apellidos = data.readUTF();

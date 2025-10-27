@@ -1,4 +1,3 @@
-
 package DAO_Variable;
 
 /**
@@ -7,10 +6,10 @@ package DAO_Variable;
  */
 public class Empleado {
 
-    public int id;
-    public String nombre;
-    public String apellidos;
-    public float sueldo;
+    private int id;
+    private String nombre;
+    private String apellidos;
+    private float sueldo;
 
     public Empleado(int id, String nombre, String apellidos, float sueldo) {
         this.id = id;
@@ -22,10 +21,10 @@ public class Empleado {
     @Override
     public String toString() {
         return "Empleado{"
-                + "id=" + id
-                + ", nombre='" + nombre + '\''
-                + ", apellidos='" + apellidos + '\''
-                + ", sueldo=" + sueldo +" €"
+                + "\nid=" + id
+                + "\nnombre='" + nombre + '\''
+                + "\napellidos='" + apellidos + '\''
+                + "\nsueldo=" + sueldo + " €"
                 + '}';
     }
 

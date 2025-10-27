@@ -90,7 +90,7 @@ public class EmpleadosMain {
                                     id, nombre, apellidos, sueldo);
 
                             //Escribir en el registro
-                            EmpleadosDAO.escribir(dataWrite, reg);
+                            EmpleadosDAOFichVar.escribir(dataWrite, reg);
                             System.out.println("Registro guardado "
                                     + "correctamente.");
                             break;
@@ -100,14 +100,14 @@ public class EmpleadosMain {
                             DataInputStream dataReadAll = new DataInputStream(
                                     new FileInputStream(fichero));
                             Empleado empleado;
-                            while ((empleado = EmpleadosDAO.leer(dataReadAll))
+                            while ((empleado = EmpleadosDAOFichVar.leer(dataReadAll))
                                     != null) {
-                                if (!EmpleadosDAO.ff) {
+                                if (!EmpleadosDAOFichVar.ff) {
                                     System.out.println(empleado.toString());
                                 }
                             }
                             dataReadAll.close();
-                            EmpleadosDAO.ff = false; // Resetear flag
+                            EmpleadosDAOFichVar.ff = false; // Resetear flag
                             break;
 
                         case 3:

@@ -14,11 +14,11 @@ import java.io.IOException;
  *
  * @author Mejias Gonzalez Francisco
  */
-public class EmpleadosDAO {
+public class EmpleadosDAOFichFijo {
 
     public static boolean ff = false;
 
-    public EmpleadosDAO() {
+    public EmpleadosDAOFichFijo() {
     }
 
     public static Empleado leer(DataInputStream data)
@@ -32,7 +32,7 @@ public class EmpleadosDAO {
             //Leer Datos de Registro Empleado (Objeto)
             nombre = "";
             apellidos = "";
-            EmpleadosDAO.ff = false;
+            EmpleadosDAOFichFijo.ff = false;
             id = data.readInt();
             //Construccion del nombre y apellidos caracter a caracter
             for (int i = 1; i <= 20; i++) {
@@ -72,7 +72,7 @@ public class EmpleadosDAO {
             escribeApellidos = new StringBuilder(reg.getApellidos().trim());
             escribeApellidos.setLength(60);
             data.writeChars(escribeApellidos.toString());
-            
+
             data.writeFloat(reg.getSueldo());
 
         } catch (IOException ioe) {

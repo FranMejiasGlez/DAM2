@@ -19,17 +19,19 @@ public class Estadistica {
         DataOutputStream fichero;
         DataInputStream ficheroDatos;
         BufferedReader teclado;
-        byte numero, total = 0;
+        byte numero = 0, total = 0;
         byte frecuencias[] = new byte[10];
         try {
             fichero = new DataOutputStream(
                     new FileOutputStream("./src/Frecuencia.dat"));
             do {
-
-                System.out.println("Ingresa un numero entre 1 y 10: ");
-                teclado = new BufferedReader(new InputStreamReader(System.in));
-                numero = (byte) Integer.parseInt(teclado.readLine());
-
+                try {
+                    System.out.println("Ingresa un numero entre 1 y 10: ");
+                    teclado = new BufferedReader(new InputStreamReader(System.in));
+                    numero = (byte) Integer.parseInt(teclado.readLine());
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Dato invalido, teclee otro..");
+                }
 
                 if (numero != 0 && numero >= 1 && numero <= 10) {
                     fichero.writeByte(numero);
@@ -51,7 +53,7 @@ public class Estadistica {
 
             } catch (EOFException eofe) {
             }
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i < 10; i++) {
                 if (frecuencias[i] > 0) {
                     System.out.println("Numero " + i + ": " + frecuencias[i]
                             + (frecuencias[i] == 1 ? " vez --> " : " veces --> ")

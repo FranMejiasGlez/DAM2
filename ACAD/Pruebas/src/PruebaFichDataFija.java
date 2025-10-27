@@ -64,7 +64,7 @@ public class PruebaFichDataFija {
                         caracterNombre = ficheroFijo.readChar();
                         nombreCompleto = nombreCompleto + caracterNombre;
                     }
-                    nombreCompleto = nombreCompleto.trim();
+                 //  nombreCompleto = nombreCompleto.trim();
                     int edadFijo = ficheroFijo.readByte();
                     System.out.println("Nombre: " + nombreCompleto
                             + ", Edad: " + edadFijo);
