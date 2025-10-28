@@ -36,7 +36,7 @@ public class EmpleadosDAOFichVar {
             emple = new Empleado(id, nombre, apellidos, sueldo);
         } catch (EOFException eofe) {
             ff = true;
-            //System.out.println("Fin de fichero");
+            System.out.println("Fin de fichero");
         }
         return emple;
     }
