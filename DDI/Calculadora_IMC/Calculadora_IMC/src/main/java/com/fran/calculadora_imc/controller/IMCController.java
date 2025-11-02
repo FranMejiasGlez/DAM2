@@ -24,8 +24,8 @@ public class IMCController {
     @FXML
     private void handleCalcular() {
         try {
-            double peso = Double.parseDouble(txtPeso.getText());
-            double altura = Double.parseDouble(txtAltura.getText());
+            double peso = Double.parseDouble(txtPeso.getText().replace(',', '.'));
+            double altura = Double.parseDouble(txtAltura.getText().replace(',', '.'));
 
             double imc = calculadora.calcular(peso, altura);
             String clasificacion = calculadora.clasificar(imc);

@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="297.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fran.calculadora_imc.controller.IMCController">
-   <children>
-      <Button layoutX="227.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleCalcular" text="Enviar" />
-      <Label fx:id="lblResultado" layoutX="114.0" layoutY="182.0" prefHeight="17.0" prefWidth="77.0" text="Resultado" />
-      <Label fx:id="lblClasificacion" layoutX="114.0" layoutY="221.0" prefHeight="17.0" prefWidth="77.0" text="Calsificacion" />
-      <TextField id="txtAltura" layoutX="107.0" layoutY="79.0" prefHeight="25.0" prefWidth="94.0" />
-      <TextField id="txtPeso" layoutX="107.0" layoutY="129.0" prefHeight="25.0" prefWidth="94.0" />
-      <Text layoutX="49.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Altura" />
-      <Text layoutX="49.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso" />
-   </children>
+    <children>
+        <Button layoutX="227.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleCalcular" text="Enviar" />
+        <Label fx:id="lblResultado" layoutX="114.0" layoutY="182.0" prefHeight="17.0" prefWidth="77.0" text="Resultado" />
+        <Label fx:id="lblClasificacion" layoutX="114.0" layoutY="221.0" prefHeight="17.0" prefWidth="77.0" text="Calsificacion" />
+        <TextField fx:id="txtAltura" layoutX="107.0" layoutY="79.0" prefHeight="25.0" prefWidth="94.0" />
+        <TextField fx:id="txtPeso" layoutX="107.0" layoutY="129.0" prefHeight="25.0" prefWidth="94.0" />
+        <Text layoutX="49.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Altura" />
+        <Text layoutX="49.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso" />
+    </children>
 </AnchorPane>

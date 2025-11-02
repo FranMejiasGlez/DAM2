@@ -2,9 +2,6 @@ package com.fran.calculadora_imc.model;
 
 public class CalculadoraIMC {
 
-    public CalculadoraIMC() {
-    }
-
     public double calcular(double peso, double altura) {
         return peso / (altura * altura);
     }
