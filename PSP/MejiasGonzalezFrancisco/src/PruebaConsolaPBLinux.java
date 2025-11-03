@@ -1,10 +1,11 @@
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -29,21 +30,20 @@ public class PruebaConsolaPBLinux {
                     Process p;
                     ProcessBuilder pb;
                     pb = new ProcessBuilder("ls", "-la", ruta);
+                    pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+                    pb.redirectError(ProcessBuilder.Redirect.INHERIT);
+
                     try {
                         p = pb.start();
 
                         // Leer salida
                         System.out.println("Es un directorio");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println(pb.command(args));
+                        System.out.println(pb.command());
                         System.out.println("");
-                        System.out.println("=== SALIDA DEL DIR ===");
-
-
-                        // Leer errores
-                        System.out.println("=== ERRORES ===");
-                        System.out.println(pb.redirectError());
+                        System.out.println("=== SALIDA ===");
                         p.waitFor();
+                        System.out.println("=== FIN SALIDA ===");
 
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -55,22 +55,26 @@ public class PruebaConsolaPBLinux {
                 if (archivo.isFile()) {
                     String linea;
                     try {
-                        BufferedReader contenido = new BufferedReader(
-                                new InputStreamReader(new FileInputStream(ruta)));
+                        Process p2;
+                        ProcessBuilder pb2;
+                        pb2 = new ProcessBuilder("cat", ruta);
+                        pb2.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+                        pb2.redirectError(ProcessBuilder.Redirect.INHERIT);
+
+                        p2 = pb2.start();
                         System.out.println("Es un fichero");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println("java PruebaConPB " + ruta);
+                        System.out.println(pb2.command());
                         System.out.println("");
                         System.out.println("=== SALIDA DEL FICHERO ===");
-                        linea = contenido.readLine();
-                        while (linea != null) {
-                            System.out.println(linea);
-                            linea = contenido.readLine();
-                        }
+                        p2.waitFor();
+                        System.out.println("\n=== FIN FICHERO ===");
                     } catch (FileNotFoundException ex) {
                         System.out.println("Archivo no encontrado");
                     } catch (IOException ex) {
                         System.out.println("Error de E/S leyendo fichero");
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(PruebaConsolaPBLinux.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             } else {

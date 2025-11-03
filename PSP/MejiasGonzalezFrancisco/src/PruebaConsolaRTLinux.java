@@ -45,7 +45,7 @@ public class PruebaConsolaRTLinux {
                         // Leer salida
                         System.out.println("Es un directorio");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println("dir " + ruta);
+                        System.out.println("ls -la " + ruta);
                         System.out.println("");
                         System.out.println("=== SALIDA DEL DIR ===");
                         while ((linea = reader.readLine()) != null) {
@@ -69,17 +69,21 @@ public class PruebaConsolaRTLinux {
                 if (archivo.isFile()) {
                     String linea;
                     try {
-                        BufferedReader contenido = new BufferedReader(
-                                new InputStreamReader(new FileInputStream(ruta)));
+                        Process p2;
+                        Runtime rt = Runtime.getRuntime();
+                        p2 = rt.exec(new String[]{"cat", ruta});
+                        BufferedReader lector =
+                                new BufferedReader(
+                                new InputStreamReader(p2.getInputStream()));
                         System.out.println("Es un fichero");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println("java PruebaConsolaRT " + ruta);
+                        System.out.println("cat " + ruta);
                         System.out.println("");
                         System.out.println("=== SALIDA DEL FICHERO ===");
-                        linea = contenido.readLine();
+                        linea = lector.readLine();
                         while (linea != null) {
                             System.out.println(linea);
-                            linea = contenido.readLine();
+                            linea = lector.readLine();
                         }
                     } catch (FileNotFoundException ex) {
                         System.out.println("Archivo no encontrado");

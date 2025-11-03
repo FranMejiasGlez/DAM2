@@ -1,10 +1,9 @@
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PruebaConsolaPB {
 
@@ -29,7 +28,7 @@ public class PruebaConsolaPB {
                         // Leer salida
                         System.out.println("Es un directorio");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println("dir " + ruta);
+                        System.out.println(pb.command());
                         System.out.println("");
                         System.out.println("=== SALIDA ===");
                         p.waitFor();
@@ -43,24 +42,30 @@ public class PruebaConsolaPB {
                 }
                 //Si existe y es un fichero
                 if (archivo.isFile()) {
-                    String linea;
+
                     try {
-                        BufferedReader contenido = new BufferedReader(
-                                new InputStreamReader(new FileInputStream(ruta)));
+                        Process p2;
+                        ProcessBuilder pb2;
+                        pb2 = new ProcessBuilder("cmd", "/c", "type", ruta);
+                        pb2.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+                        pb2.redirectError(ProcessBuilder.Redirect.INHERIT);
+
+                        p2 = pb2.start();
+
                         System.out.println("Es un fichero");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println("java PruebaConsolaPB " + ruta);
+                        System.out.println(pb2.command());
                         System.out.println("");
                         System.out.println("=== SALIDA DEL FICHERO ===");
-                        linea = contenido.readLine();
-                        while (linea != null) {
-                            System.out.println(linea);
-                            linea = contenido.readLine();
-                        }
-                    } catch (FileNotFoundException ex) {
+                        p2.waitFor();
+                        System.out.println("\n=== FIN FICHERO ===");
+                    } catch (FileNotFoundException fnfe) {
                         System.out.println("Archivo no encontrado");
-                    } catch (IOException ex) {
-                        System.out.println("Error de E/S leyendo fichero");
+                    } catch (IOException ioe) {
+                        //System.out.println("Error de E/S leyendo fichero");
+                        ioe.printStackTrace();
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(PruebaConsolaPB.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             } else {

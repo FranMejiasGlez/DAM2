@@ -3,10 +3,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Mejias Gonzalez Francisco
@@ -41,6 +37,7 @@ public class Aleatorios {
                 relanzar = linea.equalsIgnoreCase("s");
             } catch (IOException ioe) {
                 System.out.println("Error de E/S al leer por teclado");
+                
             }
 
         } while (relanzar);
