@@ -1,15 +1,18 @@
+package Ejercicio1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Mejias Gonzalez Francisco
  */
 public class NavegadorWeb {
+    /*TODO: Start no es el navegador, y 
+     * poniendo cmd tambien se abre otro proceso por
+     * delante de start que abre el navegador
+     */
 
     public static void main(String[] args) {
         Process internet;

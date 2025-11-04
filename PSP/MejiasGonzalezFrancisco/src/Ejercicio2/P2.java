@@ -1,3 +1,5 @@
+package Ejercicio2;
+
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -11,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Administrador
  */
-public class P1 {
+public class P2 {
 
     public static void main(String[] args) {
         Process p;

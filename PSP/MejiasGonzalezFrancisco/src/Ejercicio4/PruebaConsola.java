@@ -1,11 +1,22 @@
+package Ejercicio4;
 
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.InputStreamReader;
 
-public class PruebaConsolaPB {
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author Mejias Gonzalez Francisco
+ */
+public class PruebaConsola {
 
     public static void main(String[] args) {
         if (args.length != 1) {
@@ -19,21 +30,22 @@ public class PruebaConsolaPB {
                 if (archivo.isDirectory()) {
                     Process p;
                     ProcessBuilder pb;
-                    pb = new ProcessBuilder("cmd", "/c", "dir", ruta);
+                    if (System.getProperty("os.name").toLowerCase()
+                            .contains("windows")) {
+                        pb = new ProcessBuilder("cmd", "/c", "dir", ruta);
+                    } else {
+                        pb = new ProcessBuilder("ls", "-lR", ruta);
+                    }
                     pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
                     pb.redirectError(ProcessBuilder.Redirect.INHERIT);
                     try {
                         p = pb.start();
-
-                        // Leer salida
                         System.out.println("Es un directorio");
-                        System.out.println("Comando a ejecutar: ");
-                        System.out.println(pb.command());
+                        System.out.println("Comando a ejecutar: " + pb.command());
                         System.out.println("");
                         System.out.println("=== SALIDA ===");
                         p.waitFor();
                         System.out.println("=== FIN SALIDA ===");
-
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     } catch (InterruptedException ie) {
@@ -42,30 +54,24 @@ public class PruebaConsolaPB {
                 }
                 //Si existe y es un fichero
                 if (archivo.isFile()) {
-
+                    String linea;
                     try {
-                        Process p2;
-                        ProcessBuilder pb2;
-                        pb2 = new ProcessBuilder("cmd", "/c", "type", ruta);
-                        pb2.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-                        pb2.redirectError(ProcessBuilder.Redirect.INHERIT);
-
-                        p2 = pb2.start();
-
+                        BufferedReader contenido = new BufferedReader(
+                                new InputStreamReader(new FileInputStream(ruta)));
                         System.out.println("Es un fichero");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println(pb2.command());
+                        System.out.println("java PruebaConsola " + ruta);
                         System.out.println("");
                         System.out.println("=== SALIDA DEL FICHERO ===");
-                        p2.waitFor();
-                        System.out.println("\n=== FIN FICHERO ===");
-                    } catch (FileNotFoundException fnfe) {
+                        linea = contenido.readLine();
+                        while (linea != null) {
+                            System.out.println(linea);
+                            linea = contenido.readLine();
+                        }
+                    } catch (FileNotFoundException ex) {
                         System.out.println("Archivo no encontrado");
-                    } catch (IOException ioe) {
-                        //System.out.println("Error de E/S leyendo fichero");
-                        ioe.printStackTrace();
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(PruebaConsolaPB.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        System.out.println("Error de E/S leyendo fichero");
                     }
                 }
             } else {

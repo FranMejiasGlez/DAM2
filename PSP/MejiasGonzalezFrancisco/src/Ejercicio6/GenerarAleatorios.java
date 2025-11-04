@@ -1,3 +1,4 @@
+package Ejercicio6;
 
 import java.util.Random;
 
@@ -14,7 +15,7 @@ class GenerarAleatorios {
 
         int numeroAleatorio = min + r.nextInt(max - min + 1);
 
-        System.out.println("Numero generado: " + numeroAleatorio);
+        System.out.println("Numero generado: " + numeroAleatorio );
         System.exit(numeroAleatorio);
     }
 }

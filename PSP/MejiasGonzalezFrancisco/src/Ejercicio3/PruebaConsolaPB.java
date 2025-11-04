@@ -1,21 +1,13 @@
+package Ejercicio3;
+
 
 import java.io.File;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Administrador
- */
-public class PruebaConsolaPBLinux {
+public class PruebaConsolaPB {
 
     public static void main(String[] args) {
         if (args.length != 1) {
@@ -29,10 +21,9 @@ public class PruebaConsolaPBLinux {
                 if (archivo.isDirectory()) {
                     Process p;
                     ProcessBuilder pb;
-                    pb = new ProcessBuilder("ls", "-la", ruta);
+                    pb = new ProcessBuilder("cmd", "/c", "dir", ruta);
                     pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
                     pb.redirectError(ProcessBuilder.Redirect.INHERIT);
-
                     try {
                         p = pb.start();
 
@@ -53,15 +44,16 @@ public class PruebaConsolaPBLinux {
                 }
                 //Si existe y es un fichero
                 if (archivo.isFile()) {
-                    String linea;
+
                     try {
                         Process p2;
                         ProcessBuilder pb2;
-                        pb2 = new ProcessBuilder("cat", ruta);
+                        pb2 = new ProcessBuilder("cmd", "/c", "type", ruta);
                         pb2.redirectOutput(ProcessBuilder.Redirect.INHERIT);
                         pb2.redirectError(ProcessBuilder.Redirect.INHERIT);
 
                         p2 = pb2.start();
+
                         System.out.println("Es un fichero");
                         System.out.println("Comando a ejecutar: ");
                         System.out.println(pb2.command());
@@ -69,12 +61,13 @@ public class PruebaConsolaPBLinux {
                         System.out.println("=== SALIDA DEL FICHERO ===");
                         p2.waitFor();
                         System.out.println("\n=== FIN FICHERO ===");
-                    } catch (FileNotFoundException ex) {
+                    } catch (FileNotFoundException fnfe) {
                         System.out.println("Archivo no encontrado");
-                    } catch (IOException ex) {
-                        System.out.println("Error de E/S leyendo fichero");
+                    } catch (IOException ioe) {
+                        //System.out.println("Error de E/S leyendo fichero");
+                        ioe.printStackTrace();
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(PruebaConsolaPBLinux.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PruebaConsolaPB.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             } else {

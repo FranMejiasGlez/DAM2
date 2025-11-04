@@ -1,3 +1,5 @@
+package Ejercicio3;
+
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,11 +8,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 /**
  *
  * @author Mejias Gonzalez Francisco
  */
-public class PruebaConsolaRT {
+public class PruebaConsolaRTLinux {
 
     public static void main(String[] args) {
         if (args.length != 1) {
@@ -26,7 +32,7 @@ public class PruebaConsolaRT {
                     Runtime rt;
                     rt = Runtime.getRuntime();
                     try {
-                        p = rt.exec(new String[]{"cmd", "/c", "dir", ruta});
+                        p = rt.exec(new String[]{"ls", "-la", ruta});
 
                         // Leer salida normal
                         BufferedReader reader = new BufferedReader(
@@ -41,7 +47,7 @@ public class PruebaConsolaRT {
                         // Leer salida
                         System.out.println("Es un directorio");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println("dir " + ruta);
+                        System.out.println("ls -la " + ruta);
                         System.out.println("");
                         System.out.println("=== SALIDA DEL DIR ===");
                         while ((linea = reader.readLine()) != null) {
@@ -65,17 +71,21 @@ public class PruebaConsolaRT {
                 if (archivo.isFile()) {
                     String linea;
                     try {
-                        BufferedReader contenido = new BufferedReader(
-                                new InputStreamReader(new FileInputStream(ruta)));
+                        Process p2;
+                        Runtime rt = Runtime.getRuntime();
+                        p2 = rt.exec(new String[]{"cat", ruta});
+                        BufferedReader lector =
+                                new BufferedReader(
+                                new InputStreamReader(p2.getInputStream()));
                         System.out.println("Es un fichero");
                         System.out.println("Comando a ejecutar: ");
-                        System.out.println("java PruebaConsolaRT " + ruta);
+                        System.out.println("cat " + ruta);
                         System.out.println("");
                         System.out.println("=== SALIDA DEL FICHERO ===");
-                        linea = contenido.readLine();
+                        linea = lector.readLine();
                         while (linea != null) {
                             System.out.println(linea);
-                            linea = contenido.readLine();
+                            linea = lector.readLine();
                         }
                     } catch (FileNotFoundException ex) {
                         System.out.println("Archivo no encontrado");
