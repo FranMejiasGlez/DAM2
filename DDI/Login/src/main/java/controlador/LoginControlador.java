@@ -7,13 +7,16 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
 import modelo.LoginModelo;
 import vista.LoginView;
 import modelo.User;
 
 /**
  *
- * @author DAM2
+ * @author Mejias Gonzalez Francisco
  */
 public class LoginControlador implements ActionListener {
 
@@ -85,6 +88,8 @@ public class LoginControlador implements ActionListener {
                             vista.getLabelCredenciales().setText("Usuario registrado");
                             vista.getInputContra().setText("");
                             vista.getInputUser().setText("");
+                            
+
                         }
                     }
                 } else {
