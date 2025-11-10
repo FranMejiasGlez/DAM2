@@ -7,12 +7,11 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Timer;
+import java.io.IOException;
 import modelo.LoginModelo;
 import vista.LoginView;
 import modelo.User;
+import vista.RegisterView;
 
 /**
  *
@@ -45,67 +44,52 @@ public class LoginControlador implements ActionListener {
             // Obtener los valores ingresados por el usuario
             String usuarioIngresado = vista.getInputUser().getText().trim();
             String contraseniaIngresada = vista.getInputContra().getText();
-            User loginUsuario = new User(usuarioIngresado, contraseniaIngresada);
-            // Validar si existe algun usuario con ese nombre
-            if (modelo.buscarUser(loginUsuario) == null) {
+
+            // Validar campos vacíos
+            if (usuarioIngresado.isEmpty() || contraseniaIngresada.isEmpty()) {
                 vista.getLabelCredenciales().setForeground(Color.red);
-                vista.getLabelCredenciales().setText("No existe usuario");
-            } else {
-                //Si existe proseguimos al logeo y verificamos credenciales
-                if (modelo.esValido(modelo.buscarUser(loginUsuario))) {
-                    vista.getLabelCredenciales().setForeground(Color.green);
-                    vista.getLabelCredenciales().setText("Credenciales correctas");
-                } else {
-                    vista.getLabelCredenciales().setForeground(Color.red);
-                    vista.getLabelCredenciales().setText("Credenciales incorrectas");
-                }
+                vista.getLabelCredenciales().setText("Complete todos los campos");
+                return;
             }
 
-        } else {
-            // Si el boton accionado es el de Registro
-            if (e.getSource() == vista.getBotonRegistro()) {
-                //Si los campos estan vacios
-                if (!vista.getInputUser().getText().isEmpty()
-                        || !vista.getInputContra().getText().isEmpty()) {
-                    String usuarioIngresado = vista.getInputUser().getText();
-                    String contraseniaIngresada = vista.getInputContra().getText();
-                    if (contraseniaIngresada.length() < 6) {
-                        vista.getLabelCredenciales().setForeground(Color.red);
-                        vista.getLabelCredenciales().setText("Contraseña minimo 6 caracteres");
+            User loginUsuario = new User(usuarioIngresado, contraseniaIngresada);
+            try {
+                // Validar si existe algun usuario con ese nombre
+                if (modelo.buscarUser(loginUsuario) == null) {
+                    vista.getLabelCredenciales().setForeground(Color.red);
+                    vista.getLabelCredenciales().setText("No existe usuario");
+                } else {
+                    //Si existe proseguimos al logeo y verificamos credenciales
+                    if (modelo.esValido(modelo.buscarUser(loginUsuario))) {
+                        vista.getLabelCredenciales().setForeground(Color.green);
+                        vista.getLabelCredenciales().setText("Credenciales correctas");
                     } else {
-                        //Si tienen datos proseguimos con el registro
-
-                        // Buscamos primero si existe algun usuario con ese nombre
-                        if (modelo.buscarUser(new User(usuarioIngresado, contraseniaIngresada)) instanceof User) {
-                            vista.getLabelCredenciales().setForeground(Color.red);
-                            vista.getLabelCredenciales().setText(
-                                    "Ya existe usuario "
-                                    + vista.getInputUser().getText());
-                        } else {
-                            //Si no existe proseguimos con el registro
-                            modelo.registrarUser(new User(usuarioIngresado, contraseniaIngresada));
-                            vista.getLabelCredenciales().setForeground(Color.green);
-                            vista.getLabelCredenciales().setText("Usuario registrado");
-                            vista.getInputContra().setText("");
-                            vista.getInputUser().setText("");
-                            
-
-                        }
+                        vista.getLabelCredenciales().setForeground(Color.red);
+                        vista.getLabelCredenciales().setText("Credenciales incorrectas");
                     }
-                } else {
-                    //Si algun campo esta vacio
-                    vista.getLabelCredenciales().setForeground(Color.red);
-                    vista.getLabelCredenciales().setText("Complete todos los campos");
                 }
-            } else {
-                //Si el botom es el de limpiar
-                if (e.getSource() == vista.getBotonLimpiar()) {
-                    vista.getInputContra().setText("");
-                    vista.getInputUser().setText("");
-                    vista.getLabelCredenciales().setText("");
-                }
+            } catch (IOException ex) {
+                vista.getLabelCredenciales().setForeground(Color.red);
+                vista.getLabelCredenciales().setText("Error al validar usuario");
+                System.out.println("Error de E/S al logear o buscar user: " + ex.getMessage());
             }
-        }
 
+        } else if (e.getSource() == vista.getBotonRegistro()) {
+            // Si el boton accionado es el de Registro
+            try {
+                RegisterView registerView = new RegisterView();
+                LoginModelo modeloRegistro = new LoginModelo();
+                RegisterController registerController = new RegisterController(modeloRegistro, registerView);
+                registerController.iniciarVista();
+                vista.dispose();
+            } catch (IOException ex) {
+                System.out.println("Error al abrir registro: " + ex.getMessage());
+            }
+        } else if (e.getSource() == vista.getBotonLimpiar()) {
+            //Si el boton es el de limpiar
+            vista.getInputContra().setText("");
+            vista.getInputUser().setText("");
+            vista.getLabelCredenciales().setText("");
+        }
     }
 }
