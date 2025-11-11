@@ -61,10 +61,6 @@ public class Traductor {
                     pb.command("open", http);
                 }
 
-                // Redireccionar salida del proceso
-                pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-                pb.redirectError(ProcessBuilder.Redirect.INHERIT);
-
                 // Arrancar proceso
                 System.out.println("Abriendo navegador con URL: " + http);
                 p = pb.start();
