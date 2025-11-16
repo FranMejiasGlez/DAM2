@@ -43,9 +43,9 @@ public class LoginModelo {
                 String[] partes = linea.split(",");
                 // Verificar si es el usuario correcto Y la contraseña coincide
                 if (partes.length == 2
-                        && partes[0].equals(usuario.getNombre())
-                        && partes[1].equals(usuario.getContrasenia())) {
-                    System.out.println(partes[0] + " " + partes[1]);
+                        && partes[0].trim().equals(usuario.getNombre())
+                        && partes[1].trim().equals(usuario.getContrasenia())) {
+                    // System.out.println(partes[0] + " " + partes[1]);
                     return true; // Usuario y contraseña correctos
                 }
                 linea = lector.readLine();

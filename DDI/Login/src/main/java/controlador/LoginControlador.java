@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import modelo.LoginModelo;
 import vista.LoginView;
 import modelo.User;
@@ -54,20 +55,32 @@ public class LoginControlador implements ActionListener {
 
             User loginUsuario = new User(usuarioIngresado, contraseniaIngresada);
             try {
-                // Validar si existe algun usuario con ese nombre
-                if (modelo.buscarUser(loginUsuario) == null) {
-                    vista.getLabelCredenciales().setForeground(Color.red);
-                    vista.getLabelCredenciales().setText("No existe usuario");
+                // Llamamos a esValido con el objeto
+                // que contiene las credenciales INGRESADAS por el usuario.
+
+                if (modelo.esValido(loginUsuario)) {
+                    // Si esValido es true, el nombre y la contraseña coinciden con una entrada del archivo.
+                    vista.getLabelCredenciales().setForeground(Color.green);
+                    vista.getLabelCredenciales().setText("Credenciales correctas");
+                    JOptionPane.showMessageDialog(
+                            vista,
+                            "Credenciales correctas.", // Mensaje
+                            " Inicio de Sesión",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } else {
-                    //Si existe proseguimos al logeo y verificamos credenciales
-                    if (modelo.esValido(modelo.buscarUser(loginUsuario))) {
-                        vista.getLabelCredenciales().setForeground(Color.green);
-                        vista.getLabelCredenciales().setText("Credenciales correctas");
-                    } else {
-                        vista.getLabelCredenciales().setForeground(Color.red);
-                        vista.getLabelCredenciales().setText("Credenciales incorrectas");
-                    }
+                    // Si esValido es false, el usuario no existe o la contraseña es incorrecta.
+                    // Mostramos un mensaje genérico por seguridad.
+                    vista.getLabelCredenciales().setForeground(Color.red);
+                    vista.getLabelCredenciales().setText("Credenciales incorrectas");
+                    JOptionPane.showMessageDialog(
+                            vista,
+                            "El nombre de usuario o la contraseña son incorrectos. Inténtelo de nuevo.", // Mensaje
+                            "Error de Inicio de Sesión",
+                            JOptionPane.ERROR_MESSAGE
+                    );
                 }
+
             } catch (IOException ex) {
                 vista.getLabelCredenciales().setForeground(Color.red);
                 vista.getLabelCredenciales().setText("Error al validar usuario");
