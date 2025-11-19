@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
  *
  * @author Mejias Gonzalez Francisco
@@ -37,10 +34,11 @@ public class Ejercicio1 extends Thread {
     }
 
     public static void main(String[] args) {
-        Ejercicio1 hiloPrueba;
 
-        hiloPrueba = new Ejercicio1("HiloEstado");
+        Ejercicio1 hiloPrueba, hiloSecundario;
 
+        hiloPrueba = new Ejercicio1("Hilo Estado");
+        // hiloSecundario = new Ejercicio1("Hilo Secundario");
         Thread.State estado = hiloPrueba.getState();
         System.out.println("Estado 1: " + estado);//Estado NEW
 
@@ -49,9 +47,11 @@ public class Ejercicio1 extends Thread {
         hiloPrueba.start();
         estado = hiloPrueba.getState();
         System.out.println("Estado 2: " + estado);//Estado RUNNABLE
+        
         Thread.State estadoAnterior = estado;
         int contador = 3;
-
+        // hiloSecundario.start();
+        //    hiloSecundario.join();
         while (hiloPrueba.isAlive()) {
             estado = hiloPrueba.getState();
             if (!estado.equals(estadoAnterior)) {
