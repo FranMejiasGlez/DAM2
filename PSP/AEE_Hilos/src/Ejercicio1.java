@@ -1,44 +1,49 @@
 
-/**
- *
- * @author Mejias Gonzalez Francisco
- */
 public class Ejercicio1 extends Thread {
 
     private String nombre;
     private Thread t;
+    // Objeto compartido para provocar el bloqueo (la llave)
+    private static final Object CANDADO = new Object();
 
     public Ejercicio1(String nombre, Thread t) {
+        super(nombre);
         this.nombre = nombre;
-        setName(nombre);
         this.t = t;
     }
 
     public Ejercicio1(String nombre) {
+        super(nombre);
         this.nombre = nombre;
-        setName(nombre);
     }
 
     @Override
     public void run() {
         try {
+            // --- LOGICA DEL HILO SECUNDARIO ---
+            // Su trabajo es bloquear al otro hilo
+            if (t == null) {
+                synchronized (CANDADO) { // Toma la llave
+                    // Se duerme CON la llave en el bolsillo para bloquear al otro
+                    Thread.sleep(2000);
+                }
+                // Se queda vivo un poco mas para que le de tiempo al otro a hacer join()
+                Thread.sleep(3000);
+            } // --- LOGICA DEL HILO PRUEBA (El que monitoreamos) ---
+            else {
+                // 1. TIMED_WAITING: Dormimos un poco
+                Thread.sleep(200);
 
+                // 2. BLOCKED: Intentamos entrar donde esta el secundario
+                // Como el secundario esta durmiendo 2 seg con la llave, 
+                // aqui nos quedaremos BLOQUEADOS esperando.
+                synchronized (CANDADO) {
+                    // Al fin entramos (no hacemos nada, solo queriamos bloquearnos fuera)
+                }
 
-
-            for (int i = 0; i < 1000; i++) {
-            }
-
-            Thread.sleep(5000);
-
-            if (t != null) {
-
+                // 3. WAITING: Esperamos a que el secundario muera
                 t.join();
             }
-            if (t == null) { // t es null solo en hiloSecundario
-
-                Thread.sleep(5000); // 5 segundos
-            }
-
 
         } catch (InterruptedException ex) {
             System.out.println("Hilo " + getName() + " interrumpido...");
@@ -46,51 +51,36 @@ public class Ejercicio1 extends Thread {
     }
 
     public static void main(String[] args) {
-
-        Ejercicio1 hiloPrueba, hiloSecundario;
-        hiloSecundario = new Ejercicio1("Hilo Secundario");
-        hiloPrueba = new Ejercicio1("Hilo Prueba", hiloSecundario);
-
-
-        Thread.State estado = hiloPrueba.getState();
-        System.out.println("Estado: 1 - " + estado);//Estado NEW
-        System.out.println("");
-
-        hiloPrueba.start();
-        hiloSecundario.start();
-
-
-
-        Thread.State estadoAnterior = estado; // Comienza en NEW
-        int contador = 2; // Empezamos a contar desde el estado tras start()
-
-
-
-        // Monitoreamos continuamente el estado del hiloPrueba
-
-        while (hiloPrueba.isAlive()) {
-            estado = hiloPrueba.getState();
-
-            if (!estado.equals(estadoAnterior)) {
-
-
-                System.out.println("Estado: " + contador + " - "
-                        + estado);
-                System.out.println("");
-                estadoAnterior = estado;
-                contador++;
-            }
-        }
-
-
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            System.out.println("Hilo main interrumpido");
+            Ejercicio1 hiloSecundario = new Ejercicio1("Hilo Secundario");
+            // Pasamos el secundario al constructor para poder hacer join luego
+            Ejercicio1 hiloPrueba = new Ejercicio1("Hilo Prueba", hiloSecundario);
+
+            System.out.println("Estado inicial: " + hiloPrueba.getState()); // NEW
+
+            // Arrancamos primero el secundario para que le de tiempo a coger la llave
+            hiloSecundario.start();
+            Thread.sleep(100); // Pequeña pausa para asegurar que Secundario coge el candado
+            hiloPrueba.start();
+
+            Thread.State estadoActual;
+            Thread.State estadoAnterior = hiloPrueba.getState();
+            System.out.println("Estado: " + estadoAnterior);
+
+            while (hiloPrueba.isAlive()) {
+                estadoActual = hiloPrueba.getState();
+
+                // Solo imprimimos si el estado ha cambiado
+                if (estadoActual != estadoAnterior) {
+                    System.out.println("Estado: " + estadoActual);
+                    estadoAnterior = estadoActual;
+                }
+
+            }
+
+            System.out.println("Estado final: " + hiloPrueba.getState()); // TERMINATED
+
+        } catch (InterruptedException ex) {
         }
-        estado = hiloPrueba.getState();
-        System.out.println("Estado final - TERMINATED: " + estado);
-        System.out.println("\nHilo: " + hiloPrueba.getName() + " completamente terminado");
-        System.out.println("\nHilo: " + hiloSecundario.getName() + " completamente terminado");
     }
 }
