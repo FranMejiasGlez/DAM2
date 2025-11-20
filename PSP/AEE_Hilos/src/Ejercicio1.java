@@ -6,6 +6,13 @@
 public class Ejercicio1 extends Thread {
 
     private String nombre;
+    private Thread t;
+
+    public Ejercicio1(String nombre, Thread t) {
+        this.nombre = nombre;
+        setName(nombre);
+        this.t = t;
+    }
 
     public Ejercicio1(String nombre) {
         this.nombre = nombre;
@@ -15,19 +22,24 @@ public class Ejercicio1 extends Thread {
     @Override
     public void run() {
         try {
-            System.out.println("Hilo:" + getName());
-            System.out.println("");
-            System.out.println("Contando hasta 1000");
-            System.out.println("");
+
+
+
             for (int i = 0; i < 1000; i++) {
             }
-            System.out.println("Hilo:" + getName());
-            System.out.println("");
-            System.out.println("Durmiendo 5 segundos");
-            System.out.println("");
+
             Thread.sleep(5000);
 
-            System.out.println("Hilo " + getName() + " finalizando...");
+            if (t != null) {
+
+                t.join();
+            }
+            if (t == null) { // t es null solo en hiloSecundario
+
+                Thread.sleep(5000); // 5 segundos
+            }
+
+
         } catch (InterruptedException ex) {
             System.out.println("Hilo " + getName() + " interrumpido...");
         }
@@ -36,41 +48,49 @@ public class Ejercicio1 extends Thread {
     public static void main(String[] args) {
 
         Ejercicio1 hiloPrueba, hiloSecundario;
+        hiloSecundario = new Ejercicio1("Hilo Secundario");
+        hiloPrueba = new Ejercicio1("Hilo Prueba", hiloSecundario);
 
-        hiloPrueba = new Ejercicio1("Hilo Estado");
-        // hiloSecundario = new Ejercicio1("Hilo Secundario");
+
         Thread.State estado = hiloPrueba.getState();
-        System.out.println("Estado 1: " + estado);//Estado NEW
-
+        System.out.println("Estado: 1 - " + estado);//Estado NEW
         System.out.println("");
 
         hiloPrueba.start();
-        estado = hiloPrueba.getState();
-        System.out.println("Estado 2: " + estado);//Estado RUNNABLE
-        
-        Thread.State estadoAnterior = estado;
-        int contador = 3;
-        // hiloSecundario.start();
-        //    hiloSecundario.join();
+        hiloSecundario.start();
+
+
+
+        Thread.State estadoAnterior = estado; // Comienza en NEW
+        int contador = 2; // Empezamos a contar desde el estado tras start()
+
+
+
+        // Monitoreamos continuamente el estado del hiloPrueba
+
         while (hiloPrueba.isAlive()) {
             estado = hiloPrueba.getState();
+
             if (!estado.equals(estadoAnterior)) {
+
+
                 System.out.println("Estado: " + contador + " - "
-                        + estado + ": " + estado);
+                        + estado);
+                System.out.println("");
                 estadoAnterior = estado;
                 contador++;
             }
         }
 
+
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             System.out.println("Hilo main interrumpido");
         }
         estado = hiloPrueba.getState();
         System.out.println("Estado final - TERMINATED: " + estado);
-        System.out.println("\nHilo completamente terminado");
-
-
+        System.out.println("\nHilo: " + hiloPrueba.getName() + " completamente terminado");
+        System.out.println("\nHilo: " + hiloSecundario.getName() + " completamente terminado");
     }
 }
