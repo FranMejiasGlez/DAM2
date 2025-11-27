@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +26,7 @@ public class CompruebaAmigos {
 
         teclado = new BufferedReader(new InputStreamReader(System.in));
         //Calcular numero de nucleos disponibles para luego calcular hilos
-        int nucleos = 14;// Runtime.getRuntime().availableProcessors();
+        int nucleos = 40;//Runtime.getRuntime().availableProcessors();
         System.out.println("Núcleos disponibles: " + nucleos);
         //Pedir numero por teclado
         do {
@@ -42,6 +44,7 @@ public class CompruebaAmigos {
                 System.out.println("Error de E/S teclado");
             }
         } while (!esValido);
+                       System.out.println("Cargando: Hecho!");
         System.out.println("\n--- Calculando numeros amigos hasta "
                 + numero + " ---\n");
         //Calcular hilos necesarios
