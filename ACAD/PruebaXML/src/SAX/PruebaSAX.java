@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package SAX;
 
 import org.xml.sax.Attributes;
@@ -21,31 +17,36 @@ public class PruebaSAX extends DefaultHandler {
     @Override
     public void startDocument() throws SAXException {
         System.out.println("Comienzo documento XML");
-        super.startDocument();
+
     }
 
     @Override
     public void endDocument() throws SAXException {
         System.out.println("Fin documento XML");
-        super.endDocument();
+
     }
 
     @Override
     public void startElement(String uri, String localName, String qName,
             Attributes attributes) throws SAXException {
-        System.out.println("\t Principio de elemento: " + localName);
-        super.startElement(uri, localName, qName, attributes);
+
+        System.out.println("\t Principio de elemento: " + localName
+                + "\n");
+
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        System.out.println("\t Fin elemento: " + localName);
-        super.endElement(uri, localName, qName);
+        System.out.println("\t Fin elemento: " + localName + "\n");
+
     }
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-        System.out.println("Caracteres: " + ch);
-        super.characters(ch, start, length);
+        String cadena = new String(ch, start, length);
+        if (!cadena.trim().isEmpty()) {
+            System.out.println("\t Caracteres: " + cadena + "\n");
+        }
+
     }
 }

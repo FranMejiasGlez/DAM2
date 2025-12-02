@@ -6,8 +6,6 @@ package SAX;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -27,7 +25,7 @@ public class LibrosSAX {
             InputSource fileXML =
                     new InputSource("LibrosXML.xml");
             procesadorXML.parse(fileXML);
-            gestor.startDocument();
+            //gestor.startDocument();
 
         } catch (FileNotFoundException fnfe) {
             System.out.println("Fichero no encontrado");
