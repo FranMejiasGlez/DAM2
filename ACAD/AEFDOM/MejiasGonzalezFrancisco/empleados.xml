@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<empleados>
+    <empleado id="1">
+        <apellidos>Garcia</apellidos>
+        <departamento>I+D</departamento>
+        <salario>1500.5</salario>
+    </empleado>
+    <empleado id="2">
+        <apellidos>Rodriguez</apellidos>
+        <departamento>Desarrollo</departamento>
+        <salario>1800.75</salario>
+    </empleado>
+    <empleado id="3">
+        <apellidos>Lopez</apellidos>
+        <departamento>Marketing</departamento>
+        <salario>2100.0</salario>
+    </empleado>
+    <empleado id="4">
+        <apellidos>Martinez</apellidos>
+        <departamento>RRHH</departamento>
+        <salario>1650.25</salario>
+    </empleado>
+    <empleado id="5">
+        <apellidos>Sanchez</apellidos>
+        <departamento>Integracion</departamento>
+        <salario>1900.5</salario>
+    </empleado>
+    <empleado id="6">
+        <apellidos>Perez</apellidos>
+        <departamento>Electricidad</departamento>
+        <salario>1750.0</salario>
+    </empleado>
+    <empleado id="7">
+        <apellidos>Gonzalez</apellidos>
+        <departamento>Mantenimiento</departamento>
+        <salario>2200.75</salario>
+    </empleado>
+    <empleado id="8">
+        <apellidos>Fernandez</apellidos>
+        <departamento>DataScientist</departamento>
+        <salario>1950.25</salario>
+    </empleado>
+    <empleado id="9">
+        <apellidos>Diaz</apellidos>
+        <departamento>Seguridad</departamento>
+        <salario>2300.0</salario>
+    </empleado>
+    <empleado id="10">
+        <apellidos>Ruiz</apellidos>
+        <departamento>Cocinero</departamento>
+        <salario>1600.5</salario>
+    </empleado>
+<empleado id="10">
+        <apellidos>Mejias Gonzalez</apellidos>
+        <departamento>DAM</departamento>
+        <salario>1300.0</salario>
+    </empleado>
+    <empleado id="11">
+        <apellidos>Jan</apellidos>
+        <departamento>DAM</departamento>
+        <salario>1300.0</salario>
+    </empleado>
+</empleados>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<alumnos>
+    <alumno>
+        <Nombre>Fran</Nombre>
+        <id>1</id>
+        <nota>10.0</nota>
+    </alumno>
+    <alumno>
+        <Nombre>Pepe</Nombre>
+        <id>2</id>
+        <nota>5.0</nota>
+    </alumno>
+    <alumno>
+        <Nombre>Sara</Nombre>
+        <id>3</id>
+        <nota>7.0</nota>
+    </alumno>
+</alumnos>

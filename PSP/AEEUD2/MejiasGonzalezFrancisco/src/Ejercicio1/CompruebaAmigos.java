@@ -26,8 +26,8 @@ public class CompruebaAmigos {
 
         teclado = new BufferedReader(new InputStreamReader(System.in));
         //Calcular numero de nucleos disponibles para luego calcular hilos
-        int nucleos = 40;//Runtime.getRuntime().availableProcessors();
-        System.out.println("Núcleos disponibles: " + nucleos);
+        int nucleos =Runtime.getRuntime().availableProcessors(); //Calcular en base al ordenador donde se ejecuta
+        System.out.println("Núcleos disponibles: " + nucleos);// para lograr el maximo de eficiencia
         //Pedir numero por teclado
         do {
             try {
