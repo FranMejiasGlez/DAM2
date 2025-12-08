@@ -89,8 +89,9 @@ public class AniadirDatos {
                 //Construir nuevo empleado
 
                 nuevoEmple = ficheroXML.createElement("empleado");
-                nuevoEmple.setAttribute("id", Integer.toString(ultimoID++));
-
+                nuevoEmple.setAttribute("id", Integer.toString(ultimoID + 1));
+                ultimoID++;
+                
                 apell = ficheroXML.createElement("apellidos");
                 texto = ficheroXML.createTextNode(apellidos);
                 apell.appendChild(texto);

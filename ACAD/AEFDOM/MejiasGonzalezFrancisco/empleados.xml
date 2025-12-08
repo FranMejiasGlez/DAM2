@@ -50,12 +50,12 @@
         <departamento>Cocinero</departamento>
         <salario>1600.5</salario>
     </empleado>
-<empleado id="10">
+<empleado id="11">
         <apellidos>Mejias Gonzalez</apellidos>
         <departamento>DAM</departamento>
         <salario>1300.0</salario>
     </empleado>
-    <empleado id="11">
+    <empleado id="12">
         <apellidos>Jan</apellidos>
         <departamento>DAM</departamento>
         <salario>1300.0</salario>
