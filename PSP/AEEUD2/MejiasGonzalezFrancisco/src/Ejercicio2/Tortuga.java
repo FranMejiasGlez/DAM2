@@ -6,13 +6,13 @@ import java.util.Random;
  *
  * @author Mejias Gonzalez Francisco
  */
-public class Tortuga extends Thread {
+public class Tortuga extends Animal {
 
     private byte casilla = 1;
     private int max, min;
-    private EstadoCarrera estado;
+    private Animal estado;
 
-    public Tortuga(int max, int min, EstadoCarrera estado) {
+    public Tortuga(int max, int min, Animal estado) {
         this.max = max;
         this.min = min;
         this.estado = estado;
@@ -51,7 +51,7 @@ public class Tortuga extends Thread {
             System.out.println(salida + "T");
             // System.out.println(getCasilla());
         } while (this.getCasilla() < 70);
-        estado.setTiempoLlegadaTortuga(System.currentTimeMillis());
+
         System.out.println("Tortuga llega a meta");
     }
 

@@ -8,8 +8,6 @@ package Ejercicio2;
  *
  * @author Mejias Gonzalez Francisco
  */
-public class Carrera {
-
-    public static void main(String[] args) {
-    }
+public abstract class Animal extends Thread {
+    
 }

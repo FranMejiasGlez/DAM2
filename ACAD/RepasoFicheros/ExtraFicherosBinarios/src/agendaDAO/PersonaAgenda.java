@@ -10,11 +10,10 @@ package agendaDAO;
  */
 public class PersonaAgenda {
 
-    private String nombre, direccion;
+    private String nombre, direccion, telefono;
     private byte edad;
-    private short telefono;
 
-    public PersonaAgenda(String nombre, byte edad, String direccion, short telefono) {
+    public PersonaAgenda(String nombre, byte edad, String direccion, String telefono) {
         this.nombre = nombre;
         this.edad = edad;
         this.direccion = direccion;
@@ -45,7 +44,7 @@ public class PersonaAgenda {
     /**
      * @return the telefono
      */
-    public short getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -73,8 +72,7 @@ public class PersonaAgenda {
     /**
      * @param telefono the telefono to set
      */
-    public void setTelefono(short telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
 }

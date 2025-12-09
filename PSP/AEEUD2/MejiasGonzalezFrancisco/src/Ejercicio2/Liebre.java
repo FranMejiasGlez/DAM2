@@ -10,13 +10,13 @@ import java.util.Random;
  *
  * @author Mejias Gonzalez Francisco
  */
-public class Liebre extends Thread {
+public class Liebre extends Animal {
 
     private byte casilla = 1;
     private int max, min;
-    private EstadoCarrera estado;
+    private Animal estado;
 
-    public Liebre(int max, int min, EstadoCarrera estado) {
+    public Liebre(int max, int min, Animal estado) {
         this.max = max;
         this.min = min;
         this.estado = estado;
@@ -73,7 +73,7 @@ public class Liebre extends Thread {
             System.out.println(salida + "L");
             // System.out.println(getCasilla());
         } while (this.getCasilla() < 70);
-        estado.setTiempoLlegadaLiebre(System.currentTimeMillis());
+        
         System.out.println("Liebre llega a meta");
     }
 
