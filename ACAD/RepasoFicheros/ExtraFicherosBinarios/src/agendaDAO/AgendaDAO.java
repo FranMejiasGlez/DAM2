@@ -21,9 +21,11 @@ public class AgendaDAO {
 
     private boolean ff;
     private String ruta;
+    private DataInputStream fichero;
 
     public AgendaDAO() throws IOException {
         this.ruta = "Ficheros/Agenda.dat";
+        this.fichero = null;
     }
 
     public PersonaAgenda leerRegistro() throws FileNotFoundException, IOException {
@@ -31,22 +33,26 @@ public class AgendaDAO {
         String nombre, direccion;
         byte edad;
         String telefono;
-        DataInputStream fichero;
 
-        fichero = new DataInputStream(new FileInputStream(new File(ruta)));
+
+        if (this.fichero == null) {
+            this.fichero = new DataInputStream(new FileInputStream(new File(ruta)));
+        }
 
         setFf(false);
 
         try {
-            nombre = fichero.readUTF();
-            edad = fichero.readByte();
-            direccion = fichero.readUTF();
-            telefono = fichero.readUTF();
+            nombre = this.fichero.readUTF();
+            edad = this.fichero.readByte();
+            direccion = this.fichero.readUTF();
+            telefono = this.fichero.readUTF();
             persona = new PersonaAgenda(nombre, edad, direccion, telefono);
 
         } catch (EOFException eofe) {
             System.out.println("Fin de fichero Agenda.dat");
             setFf(true);
+            fichero.close();
+            fichero = null;
         }
 
         return persona;

@@ -16,6 +16,7 @@ public class ListarAgenda {
             AgendaDAO dao;
             PersonaAgenda persona;
             dao = new AgendaDAO();
+            
             persona = dao.leerRegistro();
             while (!dao.isFf()) {
                 System.out.println("Contacto: ");
@@ -27,16 +28,15 @@ public class ListarAgenda {
                 System.out.println("");
                 persona = dao.leerRegistro();
             }
+
+            
+            
+            
+            
+            
         } catch (IOException ex) {
             System.out.println("Error de E/S leyendo fichero");
         }
-
-
-
-
-
-
-
 
     }
 }

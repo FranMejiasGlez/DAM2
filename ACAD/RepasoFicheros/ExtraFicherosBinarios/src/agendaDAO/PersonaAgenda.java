@@ -20,6 +20,14 @@ public class PersonaAgenda {
         this.telefono = telefono;
     }
 
+    @Override
+    public String toString() {
+        return "\nnombre: " + nombre + '\n'
+                + "direccion: " + direccion + '\n'
+                + "telefono=: " + telefono + '\n'
+                + "edad: " + edad;
+    }
+
     /**
      * @return the nombre
      */
