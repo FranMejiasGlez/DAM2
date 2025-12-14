@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:facturas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="facturas XMLSchemaAvanzados05_videoclub.xsd"
+    xmlns:ns1="facturas">
+    <ns1:factura>
+        <ns1:datos_cliente ident="abcd">
+            <ns1:nombre>Juan</ns1:nombre>
+            <ns1:apellido>López</ns1:apellido>
+            <ns1:apellido>Jiménez</ns1:apellido>
+            <ns1:dni>11111111N</ns1:dni>
+            <ns1:tfno>123456789</ns1:tfno>
+        </ns1:datos_cliente>
+        <ns1:datos_factura>
+            <ns1:resguardo>
+                <ns1:forma_pago>Efectivo</ns1:forma_pago>
+                <ns1:importe_total>1256325.23</ns1:importe_total>
+            </ns1:resguardo>
+            <ns1:alquileres>
+                <ns1:fecha>2010-12-25</ns1:fecha>
+                <ns1:peliculas>
+                    <ns1:pelicula id_pelicula="ABC" valoracion="buena">
+                        <ns1:titulo>El retorno del Jedi</ns1:titulo>
+                        <ns1:genero>Espacio</ns1:genero>
+                        <ns1:duracion>125</ns1:duracion>
+                        <ns1:actores>
+                            <ns1:actor>
+                                <ns1:nombre>Juan</ns1:nombre>
+                                <ns1:apellido>Pardo</ns1:apellido>
+                                <ns1:apellido>López</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>Manuel</ns1:nombre>
+                                <ns1:apellido>Bandera</ns1:apellido>
+                                <ns1:apellido>Garrido</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>Luis</ns1:nombre>
+                                <ns1:apellido>González</ns1:apellido>
+                                <ns1:apellido>Romero</ns1:apellido>
+                            </ns1:actor>
+                        </ns1:actores>
+                    </ns1:pelicula>
+                </ns1:peliculas>
+            </ns1:alquileres>
+        </ns1:datos_factura>
+    </ns1:factura>
+    <ns1:factura>
+        <ns1:datos_cliente ident="efgh">
+            <ns1:nombre>Ana</ns1:nombre>
+            <ns1:apellido>Martínez</ns1:apellido>
+            <ns1:apellido>Ruiz</ns1:apellido>
+            <ns1:dni>22222222M</ns1:dni>
+            <ns1:tfno>987654321</ns1:tfno>
+        </ns1:datos_cliente>
+        <ns1:datos_factura>
+            <ns1:resguardo>
+                <ns1:forma_pago>Tarjeta</ns1:forma_pago>
+                <ns1:importe_total>23.50</ns1:importe_total>
+            </ns1:resguardo>
+            <ns1:alquileres>
+                <ns1:fecha>2011-01-10</ns1:fecha>
+                <ns1:peliculas>
+                    <ns1:pelicula id_pelicula="DEF" valoracion="excelente">
+                        <ns1:titulo>Matrix</ns1:titulo>
+                        <ns1:genero>Ciencia Ficción</ns1:genero>
+                        <ns1:duracion>136</ns1:duracion>
+                        <ns1:actores>
+                            <ns1:actor>
+                                <ns1:nombre>Keanu</ns1:nombre>
+                                <ns1:apellido>Reeves</ns1:apellido>
+                                <ns1:apellido>Smith</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>Laurence</ns1:nombre>
+                                <ns1:apellido>Fishburne</ns1:apellido>
+                                <ns1:apellido>Jones</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>Carrie-Anne</ns1:nombre>
+                                <ns1:apellido>Moss</ns1:apellido>
+                                <ns1:apellido>White</ns1:apellido>
+                            </ns1:actor>
+                        </ns1:actores>
+                    </ns1:pelicula>
+                    <ns1:pelicula id_pelicula="GHI" valoracion="regular">
+                        <ns1:titulo>La La Land</ns1:titulo>
+                        <ns1:genero>Musical</ns1:genero>
+                        <ns1:duracion>128</ns1:duracion>
+                        <ns1:actores>
+                            <ns1:actor>
+                                <ns1:nombre>Ryan</ns1:nombre>
+                                <ns1:apellido>Gosling</ns1:apellido>
+                                <ns1:apellido>Stone</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>Emma</ns1:nombre>
+                                <ns1:apellido>Stone</ns1:apellido>
+                                <ns1:apellido>Watson</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>John</ns1:nombre>
+                                <ns1:apellido>Legend</ns1:apellido>
+                                <ns1:apellido>Brown</ns1:apellido>
+                            </ns1:actor>
+                        </ns1:actores>
+                    </ns1:pelicula>
+                </ns1:peliculas>
+            </ns1:alquileres>
+        </ns1:datos_factura>
+    </ns1:factura>
+    <ns1:factura>
+        <ns1:datos_cliente ident="ijkl">
+            <ns1:nombre>Carlos</ns1:nombre>
+            <ns1:apellido>García</ns1:apellido>
+            <ns1:apellido>Fernández</ns1:apellido>
+            <ns1:dni>33333333P</ns1:dni>
+            <ns1:tfno>555666777</ns1:tfno>
+        </ns1:datos_cliente>
+        <ns1:datos_factura>
+            <ns1:resguardo>
+                <ns1:forma_pago>Efectivo</ns1:forma_pago>
+                <ns1:importe_total>12.00</ns1:importe_total>
+            </ns1:resguardo>
+            <ns1:alquileres>
+                <ns1:fecha>2011-02-15</ns1:fecha>
+                <ns1:peliculas>
+                    <ns1:pelicula id_pelicula="ABC" valoracion="buena">
+                        <ns1:titulo>El retorno del Jedi</ns1:titulo>
+                        <ns1:genero>Espacio</ns1:genero>
+                        <ns1:duracion>125</ns1:duracion>
+                        <ns1:actores>
+                            <ns1:actor>
+                                <ns1:nombre>Juan</ns1:nombre>
+                                <ns1:apellido>Pardo</ns1:apellido>
+                                <ns1:apellido>López</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>Manuel</ns1:nombre>
+                                <ns1:apellido>Bandera</ns1:apellido>
+                                <ns1:apellido>Garrido</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>Luis</ns1:nombre>
+                                <ns1:apellido>González</ns1:apellido>
+                                <ns1:apellido>Romero</ns1:apellido>
+                            </ns1:actor>
+                        </ns1:actores>
+                    </ns1:pelicula>
+                </ns1:peliculas>
+            </ns1:alquileres>
+        </ns1:datos_factura>
+    </ns1:factura>
+</ns1:facturas>

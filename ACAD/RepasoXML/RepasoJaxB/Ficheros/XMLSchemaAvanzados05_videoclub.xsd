@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- Versión sin definición de tipos de datos -->
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="facturas" elementFormDefault="unqualified"
+	    xmlns:fact="facturas">	
+
+<!-- ====== ELEMENTO facturas ====== -->
+	<element name="facturas">
+      		<complexType>
+         		<sequence>
+				<element ref="fact:factura" minOccurs="0" maxOccurs="unbounded" />
+         		</sequence>
+      		</complexType>
+	</element>	
+ <!-- ====== ELEMENTO factura ====== -->  	
+	<element name="factura">
+      		<complexType>
+         		<sequence>
+            			<element ref="fact:datos_cliente" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:datos_factura" minOccurs="1" maxOccurs="1" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO datos_cliente ====== -->
+	<element name="datos_cliente">
+		<complexType>
+         	<sequence>
+            	<element ref="fact:nombre" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:apellido" minOccurs="2" maxOccurs="2" />
+				<element ref="fact:dni" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:tfno" minOccurs="1" maxOccurs="1" />
+			</sequence>
+			<attribute name="ident" type="string" use="required" />
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO nombre ====== -->
+	<element name="nombre" type="string" />
+<!-- ====== ELEMENTO apellido ====== -->
+	<element name="apellido" type="string" />
+<!-- ====== ELEMENTO dni ====== -->
+	<element name="dni">
+		<simpleType>
+			<restriction base="string">
+				<pattern value="[0-9]{8}[A-Z]" />
+			</restriction>
+		</simpleType>
+	</element>
+<!-- ====== ELEMENTO tfno ====== -->
+	<element name="tfno">
+		<simpleType>
+			<restriction base="string">
+				<pattern value="[0-9]{9}" />
+			</restriction>
+		</simpleType>
+	</element>
+<!-- ====== ELEMENTO datos_factura ====== -->
+	<element name="datos_factura">
+		<complexType>
+         	<sequence>
+            	<element ref="fact:resguardo" minOccurs="1" maxOccurs="1" />
+					<choice>
+						<element ref="fact:alquileres" minOccurs="1" maxOccurs="1" />
+						<element ref="fact:compras" minOccurs="1" maxOccurs="1" />
+						<element name="alquileres_compras">
+                            <complexType>
+                                <sequence>
+									<element ref="fact:alquileres" minOccurs="1" maxOccurs="1" />
+									<element ref="fact:compras" minOccurs="1" maxOccurs="1" />
+								</sequence>
+                            </complexType>
+                        </element>
+					</choice>
+			</sequence>
+		</complexType>
+	</element>
+	
+<!-- ====== ELEMENTO resguardo ====== -->
+	<element name="resguardo">
+		<complexType>
+			<sequence>
+				<element ref="fact:forma_pago" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:importe_total" minOccurs="1" maxOccurs="1" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO forma_pago ====== -->
+	<element name="forma_pago" type="string" />
+<!-- ====== ELEMENTO importe_total ====== -->
+	<element name="importe_total" type="float" />
+<!-- ====== ELEMENTO alquileres ====== -->
+	<element name="alquileres">
+		<complexType>
+			<sequence>
+				<element ref="fact:fecha" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:peliculas" minOccurs="1" maxOccurs="1" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO fecha ====== -->
+	<element name="fecha" type="date" />
+<!-- ====== ELEMENTO peliculas ====== -->
+	<element name="peliculas">
+		<complexType>
+			<sequence>
+				<element ref="fact:pelicula" minOccurs="1" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO pelicula ====== -->
+	<element name="pelicula">
+		<complexType>
+			<sequence>
+				<element ref="fact:titulo" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:genero" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:duracion" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:actores" minOccurs="1" maxOccurs="1" />
+			</sequence>
+			<attribute name="id_pelicula" type="string" use="required" />
+			<attribute name="valoracion" type="string" />
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO titulo ====== -->
+	<element name="titulo" type="string" />
+<!-- ====== ELEMENTO genero ====== -->
+	<element name="genero" type="string" />
+<!-- ====== ELEMENTO duracion ====== -->
+	<element name="duracion" type="positiveInteger" />
+<!-- ====== ELEMENTO actores ====== -->
+	<element name="actores">
+		<complexType>
+			<sequence>
+				<element ref="fact:actor" minOccurs="3" maxOccurs="3" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO actor ====== -->
+	<element name="actor">
+		<complexType>
+         		<sequence>
+            			<element ref="fact:nombre" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:apellido" minOccurs="2" maxOccurs="2" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO compras ====== -->		
+	<element name="compras">
+		<complexType>
+			<choice>
+				<element ref="fact:dvds" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:cintas" minOccurs="1" maxOccurs="1" />
+				<element name="dvds_cintas">
+                    <complexType>
+						<sequence>
+							<element ref="fact:dvds" minOccurs="1" maxOccurs="1" />
+							<element ref="fact:cintas" minOccurs="1" maxOccurs="1" />
+						</sequence>
+                    </complexType>
+                </element>
+			</choice>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO dvds ====== -->
+	<element name="dvds">
+		<complexType>
+			<sequence>
+				<element ref="fact:dvd" minOccurs="1" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO dvd ====== -->
+	<element name="dvd">
+		<complexType>
+			<sequence>
+				<element ref="fact:extras" minOccurs="0" maxOccurs="1" />
+				<element ref="fact:titulo" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:fecha_salida_mercado" minOccurs="1" maxOccurs="1" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO extras ====== -->
+	<element name="extras">
+		<complexType />
+	</element>
+<!-- ====== ELEMENTO fecha_salida_mercado ====== -->
+	<element name="fecha_salida_mercado" type="date" />
+<!-- ====== ELEMENTO cintas ====== -->
+	<element name="cintas">
+		<complexType>
+			<sequence>
+				<element ref="fact:cinta" minOccurs="1" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO cinta ====== -->
+	<element name="cinta">
+		<complexType>
+			<sequence>
+				<element ref="fact:titulo" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:formato" minOccurs="1" maxOccurs="1" />
+				<element ref="fact:rebobinado" minOccurs="0" maxOccurs="1" />
+			</sequence>
+		</complexType>
+	</element>
+<!-- ====== ELEMENTO formato ====== -->
+	<element name="formato" type="string" />
+<!-- ====== ELEMENTO rebobinado ====== -->
+	<element name="rebobinado">
+		<complexType />
+	</element>
+</schema>

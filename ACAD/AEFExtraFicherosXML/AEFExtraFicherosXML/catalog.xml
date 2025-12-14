@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Documents%20and%20Settings/Administrador/Mis%20documentos/NetBeansProjects/AEFBoletinExtraXML/AEFExtraFicherosXML/XMLSchemaAvanzados05_videoclub.xsd" uri="xml-resources/jaxb/JaxBindingAlquileres/XMLSchemaAvanzados05_videoclub.xsd"/>
+</catalog>

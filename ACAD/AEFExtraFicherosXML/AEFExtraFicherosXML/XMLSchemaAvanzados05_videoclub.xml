@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:facturas  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="facturas XMLSchemaAvanzados05_videoclub.xsd"
+			   xmlns:ns1="facturas">
+       <ns1:factura>
+            <ns1:datos_cliente ident="abcd">
+                <ns1:nombre>Juan</ns1:nombre>
+                <ns1:apellido>López</ns1:apellido>
+                <ns1:apellido>Jiménez</ns1:apellido>
+                <ns1:dni>11111111N</ns1:dni>
+                <ns1:tfno>123456789</ns1:tfno>
+            </ns1:datos_cliente>
+            <ns1:datos_factura>
+                <ns1:resguardo>
+                    <ns1:forma_pago>
+                        Efectivo
+                    </ns1:forma_pago>
+                    <ns1:importe_total>
+                        1256325.23
+                    </ns1:importe_total>
+                </ns1:resguardo>
+                <ns1:alquileres>
+                    <ns1:fecha>2010-12-25</ns1:fecha>
+                    <ns1:peliculas>
+                        <ns1:pelicula id_pelicula="ABC" valoracion="buena">
+                            <ns1:titulo>El retorno del Jedi</ns1:titulo>
+                            <ns1:genero>Espacio</ns1:genero>
+                            <ns1:duracion>125</ns1:duracion>
+                            <ns1:actores>
+                                <ns1:actor>
+                                    <ns1:nombre>Juan</ns1:nombre>
+                                    <ns1:apellido>Pardo</ns1:apellido>
+                                    <ns1:apellido>López</ns1:apellido>
+                                </ns1:actor>
+                                <ns1:actor>
+                                    <ns1:nombre>Manuel</ns1:nombre>
+                                    <ns1:apellido>Bandera</ns1:apellido>
+                                    <ns1:apellido>Garrido</ns1:apellido>
+                                </ns1:actor>
+                                <ns1:actor>
+                                    <ns1:nombre>Luis</ns1:nombre>
+                                    <ns1:apellido>González</ns1:apellido>
+                                    <ns1:apellido>Romero</ns1:apellido>
+                                </ns1:actor>
+                            </ns1:actores>
+                        </ns1:pelicula>
+                    </ns1:peliculas>
+                </ns1:alquileres>
+            </ns1:datos_factura>
+       </ns1:factura>
+	   <ns1:factura>
+        <ns1:datos_cliente ident="efgh">
+            <ns1:nombre>María</ns1:nombre>
+            <ns1:apellido>García</ns1:apellido>
+            <ns1:apellido>Sanz</ns1:apellido>
+            <ns1:dni>22222222J</ns1:dni>
+            <ns1:tfno>987654321</ns1:tfno>
+            <ns1:email>m.garcia@correo.es</ns1:email>
+            <ns1:direccion>Av. de la Constitución 45, Sevilla</ns1:direccion>
+        </ns1:datos_cliente>
+        
+        <ns1:datos_factura>
+            <ns1:resguardo>
+                <ns1:forma_pago>Tarjeta</ns1:forma_pago>
+                <ns1:importe_total>25.00</ns1:importe_total>
+            </ns1:resguardo>
+            <ns1:alquileres>
+                <ns1:fecha>2023-10-15</ns1:fecha>
+                <ns1:peliculas>
+                    <ns1:pelicula id_pelicula="XYZ" valoracion="muy buena">
+                        <ns1:titulo>Inception</ns1:titulo>
+                        <ns1:director>Christopher Nolan</ns1:director>
+                        <ns1:anio>2010</ns1:anio>
+                        <ns1:genero>Ciencia Ficción</ns1:genero>
+                        <ns1:duracion>148</ns1:duracion>
+                        <ns1:actores>
+                            <ns1:actor>
+                                <ns1:nombre>Leonardo</ns1:nombre>
+                                <ns1:apellido>DiCaprio</ns1:apellido>
+                            </ns1:actor>
+                        </ns1:actores>
+                    </ns1:pelicula>
+                    
+                    <ns1:pelicula id_pelicula="XYZ" valoracion="muy buena">
+                        <ns1:titulo>Inception</ns1:titulo>
+                        <ns1:director>Christopher Nolan</ns1:director>
+                        <ns1:anio>2010</ns1:anio>
+                        <ns1:genero>Ciencia Ficción</ns1:genero>
+                        <ns1:duracion>148</ns1:duracion>
+                        <ns1:actores>
+                            <ns1:actor>
+                                <ns1:nombre>Leonardo</ns1:nombre>
+                                <ns1:apellido>DiCaprio</ns1:apellido>
+                            </ns1:actor>
+                        </ns1:actores>
+                    </ns1:pelicula>
+                    
+                    <ns1:pelicula id_pelicula="DEF" valoracion="regular">
+                        <ns1:titulo>Jurassic Park</ns1:titulo>
+                        <ns1:director>Steven Spielberg</ns1:director>
+                        <ns1:anio>1993</ns1:anio>
+                        <ns1:genero>Aventura</ns1:genero>
+                        <ns1:duracion>127</ns1:duracion>
+                        <ns1:actores>
+                            <ns1:actor>
+                                <ns1:nombre>Sam</ns1:nombre>
+                                <ns1:apellido>Neill</ns1:apellido>
+                            </ns1:actor>
+                        </ns1:actores>
+                    </ns1:pelicula>
+                </ns1:peliculas>
+            </ns1:alquileres>
+        </ns1:datos_factura>
+    </ns1:factura>
+	<ns1:factura>
+        <ns1:datos_cliente ident="zxyv">
+            <ns1:nombre>Pedro</ns1:nombre>
+            <ns1:apellido>Mármol</ns1:apellido>
+            <ns1:dni>33333333K</ns1:dni>
+            <ns1:tfno>600111222</ns1:tfno>
+            <ns1:email>pedro.m@correo.com</ns1:email>
+            <ns1:direccion>Avenida Rocosa 10, Canteravilla</ns1:direccion>
+        </ns1:datos_cliente>
+        
+        <ns1:datos_factura>
+            <ns1:resguardo>
+                <ns1:forma_pago>Bizum</ns1:forma_pago>
+                <ns1:importe_total>4.50</ns1:importe_total>
+            </ns1:resguardo>
+            <ns1:alquileres>
+                <ns1:fecha>2024-01-10</ns1:fecha>
+                <ns1:peliculas>
+                    <ns1:pelicula id_pelicula="ABC" valoracion="excelente">
+                        <ns1:titulo>El retorno del Jedi</ns1:titulo>
+                        <ns1:director>Richard Marquand</ns1:director>
+                        <ns1:anio>1983</ns1:anio>
+                        <ns1:genero>Ciencia Ficción / Espacio</ns1:genero>
+                        <ns1:duracion>125</ns1:duracion>
+                        <ns1:idioma>Inglés</ns1:idioma>
+                        <ns1:subtitulos>Español</ns1:subtitulos>
+                        <ns1:actores>
+                            <ns1:actor>
+                                <ns1:nombre>Mark</ns1:nombre>
+                                <ns1:apellido>Hamill</ns1:apellido>
+                            </ns1:actor>
+                            <ns1:actor>
+                                <ns1:nombre>Carrie</ns1:nombre>
+                                <ns1:apellido>Fisher</ns1:apellido>
+                            </ns1:actor>
+                        </ns1:actores>
+                    </ns1:pelicula>
+                </ns1:peliculas>
+            </ns1:alquileres>
+        </ns1:datos_factura>
+    </ns1:factura>
+</ns1:facturas>

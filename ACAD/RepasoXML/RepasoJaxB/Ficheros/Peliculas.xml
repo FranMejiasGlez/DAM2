@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Peliculas>
+    <Pelicula>
+        <Id>ABC</Id>
+        <Titulo>El retorno del Jedi</Titulo>
+        <Duracion>125</Duracion>
+        <Veces>2</Veces>
+    </Pelicula>
+    <Pelicula>
+        <Id>DEF</Id>
+        <Titulo>Matrix</Titulo>
+        <Duracion>136</Duracion>
+        <Veces>1</Veces>
+    </Pelicula>
+    <Pelicula>
+        <Id>GHI</Id>
+        <Titulo>La La Land</Titulo>
+        <Duracion>128</Duracion>
+        <Veces>1</Veces>
+    </Pelicula>
+</Peliculas>

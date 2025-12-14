@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<peliculas>
+    <pelicula id="ABC">
+        <titulo>El retorno del Jedi</titulo>
+        <duracion>125</duracion>
+        <veces>2</veces>
+    </pelicula>
+    <pelicula id="XYZ">
+        <titulo>Inception</titulo>
+        <duracion>148</duracion>
+        <veces>2</veces>
+    </pelicula>
+    <pelicula id="DEF">
+        <titulo>Jurassic Park</titulo>
+        <duracion>127</duracion>
+        <veces>1</veces>
+    </pelicula>
+</peliculas>
