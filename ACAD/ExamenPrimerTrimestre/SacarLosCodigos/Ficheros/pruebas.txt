@@ -1,0 +1,5 @@
+opcional;Prueba 1;Actividad;3
+opcional;Prueba 4;Participación;2
+obligatorio;Prueba 2;Ejercicio;2
+obligatorio;Prueba 3;Práctica;2
+obligatorio;Prueba 5;Examen;2

@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xsd:schema version="1.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            elementFormDefault="qualified">
+    <xsd:element name="asignaturas">
+        <xsd:complexType>
+            <xsd:sequence>  
+                <xsd:element name="asignatura" type="TipoAsignatura" maxOccurs="50" minOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>           
+  <xsd:complexType name="TipoAlumno">
+	<xsd:sequence>
+		<xsd:element name="nombre">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1"></xsd:minLength>
+					<xsd:maxLength value="15"></xsd:maxLength>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
+		<xsd:element name="apellidos">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1"></xsd:minLength>
+					<xsd:maxLength value="30"></xsd:maxLength>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
+		<xsd:element name="direccion" type="TipoDireccion"/>
+	 </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TipoDireccion">
+     <xsd:sequence>
+      <xsd:element name="calle"  type="xsd:string"/>
+      <xsd:element name="numero">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:integer">
+				<xsd:pattern value="[0-9]{3}"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	  </xsd:element>	
+      <xsd:element name="poblacion">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:minLength value="1"></xsd:minLength>
+				<xsd:maxLength value="25"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	  </xsd:element>
+      <xsd:element name="provincia">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:minLength value="1"></xsd:minLength>
+				<xsd:maxLength value="20"></xsd:maxLength>
+			</xsd:restriction>
+		</xsd:simpleType>
+	  </xsd:element>
+      <xsd:element name="codigoPostal">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:pattern value="[0-9]{5}"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	  </xsd:element>	  
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="TipoCodigo">
+    <xsd:restriction base="xsd:integer">
+        <xsd:minInclusive value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="TipoPruebas">
+    <xsd:sequence>
+      <xsd:element name="prueba" minOccurs="1" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nombrePrueba">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"></xsd:minLength>
+			<xsd:maxLength value="15"></xsd:maxLength>
+                    </xsd:restriction>			
+                </xsd:simpleType>    
+            </xsd:element>
+            <xsd:element name="nota">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:double">
+                  <xsd:minInclusive value="1"/>
+                  <xsd:maxExclusive value="10"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="peso">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:integer">
+                        <xsd:minInclusive value="1"/>
+                        <xsd:maxExclusive value="100"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+			<xsd:element name="tipo">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="op"/>
+						<xsd:enumeration value="ob"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>	
+	 </xsd:sequence>
+        <xsd:attribute name="numero" type="TipoCodigo"/>
+       </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="TipoAsignatura">
+    <xsd:sequence>
+      <xsd:element name="alumno" type="TipoAlumno"/>
+      <xsd:element name="fechaAlta" type="xsd:date"/>
+      <xsd:element name="pruebas"  type="TipoPruebas"/>
+    </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

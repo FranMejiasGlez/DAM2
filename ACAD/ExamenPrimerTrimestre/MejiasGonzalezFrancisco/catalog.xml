@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/E:/DAM2/ACAD/ExamenPrimerTrimestre/MejiasGonzalezFrancisco/Ficheros/asignaturasEsquema.xsd" uri="xml-resources/jaxb/jaxBinding/asignaturasEsquema.xsd"/>
+</catalog>
