@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<asignaturas
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:noNamespaceSchemaLocation='asignaturasEsquema.xsd'>
+    <asignatura>
+        <alumno>
+            <nombre>Manuel</nombre>
+            <apellidos>González Díaz</apellidos>
+            <direccion>
+                <calle>Andalucía</calle>
+                <numero>023</numero>
+                <poblacion>Medina del campo</poblacion>
+                <provincia>Cádiz</provincia>
+                <codigoPostal>40876</codigoPostal>
+            </direccion>
+        </alumno>
+        <fechaAlta>2015-01-23</fechaAlta>
+        <pruebas>
+            <prueba numero="5">
+                <nombrePrueba>Examen</nombrePrueba>
+                <nota>5.7</nota>
+                <peso>50</peso>
+		<tipo>ob</tipo>
+            </prueba>
+            <prueba numero="3">
+                <nombrePrueba>Práctica</nombrePrueba>
+                <nota>8</nota>
+                <peso>20</peso>
+		<tipo>ob</tipo>				
+            </prueba>
+            <prueba numero="1">
+                <nombrePrueba>Actividad</nombrePrueba>
+                <nota>7.8</nota>
+                <peso>10</peso>
+		<tipo>op</tipo>				
+            </prueba>            
+        </pruebas>
+    </asignatura>
+    <asignatura>
+        <alumno>
+            <nombre>Saray</nombre>
+            <apellidos>Alavez Mora</apellidos>
+            <direccion>
+                <calle>Aurora Boreal</calle>
+                <numero>012</numero>
+                <poblacion>Mairena del Aljarafe</poblacion>
+                <provincia>Sevilla</provincia>
+                <codigoPostal>41927</codigoPostal>
+            </direccion>
+        </alumno>
+        <fechaAlta>2015-01-10</fechaAlta>
+        <pruebas>
+            <prueba numero="2">
+                <nombrePrueba>Ejercicio</nombrePrueba>
+                <nota>8.6</nota>
+                <peso>15</peso>
+		<tipo>ob</tipo>
+            </prueba>
+            <prueba numero="3">
+                <nombrePrueba>Práctica</nombrePrueba>
+                <nota>4.5</nota>
+                <peso>20</peso>
+		<tipo>ob</tipo>				
+            </prueba>
+            <prueba numero="1">
+                <nombrePrueba>Actividad</nombrePrueba>
+                <nota>6.75</nota>
+                <peso>10</peso>
+		<tipo>op</tipo>				
+            </prueba>            
+        </pruebas>
+    </asignatura>    
+    <asignatura>
+        <alumno>
+            <nombre>Javier</nombre>
+            <apellidos>Soto del Real</apellidos>
+            <direccion>
+                <calle>Nueva</calle>
+                <numero>032</numero>
+                <poblacion>San Juan del Aznalfarache</poblacion>
+                <provincia>Sevilla</provincia>
+                <codigoPostal>41926</codigoPostal>
+            </direccion>
+        </alumno>
+        <fechaAlta>2015-02-02</fechaAlta>
+        <pruebas>
+            <prueba numero="4">
+                <nombrePrueba>Participación</nombrePrueba>
+                <nota>6.4</nota>
+                <peso>40</peso>
+		<tipo>op</tipo>				
+            </prueba>
+            <prueba numero="2">
+                <nombrePrueba>Ejercicio</nombrePrueba>
+                <nota>9.2</nota>
+                <peso>15</peso>
+		<tipo>ob</tipo>			
+            </prueba>
+        </pruebas>
+    </asignatura>   
+    <asignatura>
+        <alumno>
+            <nombre>Nuria</nombre>
+            <apellidos>Fuentes Pérez</apellidos>
+            <direccion>
+                <calle>Isabela</calle>
+                <numero>002</numero>
+                <poblacion>Sevilla</poblacion>
+                <provincia>Sevilla</provincia>
+                <codigoPostal>41013</codigoPostal>
+            </direccion>
+        </alumno>
+        <fechaAlta>2015-02-02</fechaAlta>
+        <pruebas>
+            <prueba numero="1">
+                <nombrePrueba>Actividad</nombrePrueba>
+                <nota>7.75</nota>
+                <peso>10</peso>
+		<tipo>op</tipo>					
+            </prueba>              
+            <prueba numero="4">
+                <nombrePrueba>Participación</nombrePrueba>
+                <nota>8.4</nota>
+                <peso>40</peso>
+		<tipo>op</tipo>				
+            </prueba>
+            <prueba numero="5">
+                 <nombrePrueba>Examen</nombrePrueba>
+                <nota>8.25</nota>
+                <peso>50</peso>
+		<tipo>ob</tipo>		
+            </prueba>
+        </pruebas>
+    </asignatura>            
+</asignaturas>

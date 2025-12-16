@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<alumnos>
+    <alumno>
+        <nombre>Manuel</nombre>
+        <totalPruebas>3</totalPruebas>
+        <notaMedia>8.714</notaMedia>
+    </alumno>
+    <alumno>
+        <nombre>Saray</nombre>
+        <totalPruebas>3</totalPruebas>
+        <notaMedia>7.372</notaMedia>
+    </alumno>
+    <alumno>
+        <nombre>Javier</nombre>
+        <totalPruebas>2</totalPruebas>
+        <notaMedia>10.16</notaMedia>
+    </alumno>
+    <alumno>
+        <nombre>Nuria</nombre>
+        <totalPruebas>3</totalPruebas>
+        <notaMedia>14.0</notaMedia>
+    </alumno>
+</alumnos>
