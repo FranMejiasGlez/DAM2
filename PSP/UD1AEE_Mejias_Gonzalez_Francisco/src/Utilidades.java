@@ -1,14 +1,8 @@
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -25,17 +19,21 @@ public class Utilidades {
             System.out.println("Sistema operativo no soportado: " + OS);
             return;
         }
-        FileReader fichero1 = null, fichero2 = null;
-        boolean esFichero = true;
+
         Process proceso;
-        ProcessBuilder pb;
-        FileWriter ficheroErrores = null;
+        Runtime rt;
+        boolean parametrosValidos = true;
+
+        rt = Runtime.getRuntime();
 
         try {
-            ficheroErrores = new FileWriter("Errores.txt");
-            ficheroErrores.close();
+            // Crear/limpiar archivo de errores
+            File archivoErrores = new File("Errores.txt");
+            if (archivoErrores.exists()) {
+                archivoErrores.delete();
+            }
+            archivoErrores.createNewFile();
 
-            ficheroErrores = new FileWriter("Errores.txt", true);
             if (args.length < 1 || args.length > 2) {
                 System.out.println("Error de formato, modo uso: ");
                 System.out.println("Comparar ficheros: ");
@@ -45,160 +43,90 @@ public class Utilidades {
                 System.out.println("Comprobar existencia de user en sistema operativo: ");
                 System.out.println("");
                 System.out.println("java Utilidades [NombreUsuario]");
-            } else {
-                //Si son 2 parametros --> Comparar ficheros
+                parametrosValidos = false;
+            }
+
+            if (parametrosValidos) {
+                // Si son 2 parametros --> Comparar ficheros
                 if (args.length == 2) {
                     System.out.println("Modo: Comparacion de ficheros");
-                    try {
-                        fichero1 = new FileReader(args[0]);
-                    } catch (FileNotFoundException fnfe) {
-                        System.out.println("Fichero 1 no encontrado");
-                        esFichero = false;
-                        try {
-                            ficheroErrores.write("Fichero 1 no encontrado\n");
-                        } catch (IOException ex) {
-                            System.out.println("Error al escribir en fichero de errores");
-                        }
-                    }
 
-                    try {
-                        fichero2 = new FileReader(args[1]);
-                    } catch (FileNotFoundException fnfe) {
-                        System.out.println("Fichero 2 no encontrado");
-                        esFichero = false;
-                        try {
-                            ficheroErrores.write("Fichero 2 no encontrado\n");
-                        } catch (IOException ex) {
-                            System.out.println("Error al escribir en fichero de errores");
-                        }
-                    }
-
-                    if (esFichero == false) {
-                        System.out.println("Error de parametros,"
-                                + " se esperaba encontrar: java Utilidades [Ruta Fichero1] [Ruta Fichero2]");
-                    } else {//Si son ficheros
-                        pb = new ProcessBuilder();
+                    if (parametrosValidos) {
                         if (ES_WINDOWS) {
-                            //Comparar ficheros con fc
-
-                            pb.command().add("cmd");
-                            pb.command().add("/c");
-                            pb.command().add("fc");
-                            pb.command().add(args[0]);  // Usa args[0] directamente
-                            pb.command().add(args[1]);  // Usa args[1] directamente
-
-                            System.out.println("Ejecutando comparacion");
-
-
-                        } else {//ES_LINUX
-                            pb.command().add("diff");
-                            pb.command().add(args[0]);  // Usa args[0] directamente
-                            pb.command().add(args[1]);  // Usa args[1] directamente
+                            // fc es comando INTERNO, necesita cmd /c
+                            // Redirigir errores con 2>> al archivo usando array
+                            String[] comandoArray = {"cmd", "/c", "fc \"" + args[0] + "\" \"" + args[1] + "\" 2>> Errores.txt"};
+                            System.out.println("Ejecutando comparacion en Windows");
+                            proceso = rt.exec(comandoArray);
+                        } else {
+                            // diff es comando EXTERNO en Unix
+                            // Redirigir errores con 2>> al archivo usando shell
+                            String[] comandoArray = {"/bin/sh", "-c", "diff \"" + args[0] + "\" \"" + args[1] + "\" 2>> Errores.txt"};
+                            System.out.println("Ejecutando comparacion en Unix/Linux");
+                            proceso = rt.exec(comandoArray);
                         }
-                        //COMPARAR FICHEROS
-                        if (fichero1 != null && fichero2 != null) {
-                            try {
-                                File errores = new File("Errores.txt");
-                                pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-                                pb.redirectError(ProcessBuilder.Redirect.to(errores));
-                                proceso = pb.start();
-                                proceso.waitFor();  // Esperar a que termine
-                            } catch (IOException ex) {
-                                System.out.println("Error al arrancar proceso fc");
-                            } catch (InterruptedException ex) {
-                                System.out.println("Proceso fc interrumpido");
-                            } finally {
-                                fichero1.close();
-                                fichero2.close();
-                            }
-                        }
-                    }
-                } else {// Es 1 parametro
-                    pb = new ProcessBuilder();
-                    //Si es 1 parametro - buscar usuario
-                    if (ES_WINDOWS) {
-                        if (args.length == 1) {
-                            System.out.println("Comprobando usuario " + args[0]
-                                    + " en sistema");
 
-                            pb.command().add("cmd");
-                            pb.command().add("/c");
-                            pb.command().add("net");
-                            pb.command().add("user");
-                            pb.command().add(args[0]);
-                            System.out.println("Ejecutando comando:"
-                                    + pb.command().toString());
-
-
-                        }
-                    } else {//ES_LINUX
-
-                        // Linux: id -u [args[0]]
-                        // Si el usuario existe, retorna 0 (éxito). Si no existe, retorna >0 (error).
-                        pb.command().add("id");
-                        pb.command().add("-u");
-                        pb.command().add(args[0]);// Usa args[0] directamente
-                        System.out.println("Ejecutando comando:"
-                                + pb.command().toString());
-
-                    }
-                    try {
-                        String linea;
-                        boolean existe = false;
-                        pb.redirectOutput(ProcessBuilder.Redirect.PIPE);
-                        pb.redirectError(ProcessBuilder.Redirect.PIPE);
-                        proceso = pb.start();
-
+                        // Leer y mostrar la salida estándar
                         BufferedReader lector = new BufferedReader(
-                                new InputStreamReader(
-                                proceso.getInputStream()));
-
-                        // Lógica de lectura: solo relevante para Windows
+                                new InputStreamReader(proceso.getInputStream()));
+                        String linea;
                         while ((linea = lector.readLine()) != null) {
-                            // Comprobación para Windows (español e inglés)
-                            if (ES_WINDOWS && (linea.contains("Nombre de usuario")
-                                    || linea.contains("User name"))) {
-                                existe = true;
-                            }
+                            System.out.println(linea);
                         }
-                        int exitCode = proceso.waitFor();
 
-                        // LÓGICA DE CORRECCIÓN PARA LINUX/UNIX
-                        // En sistemas Unix, id -u devuelve 0 si el usuario existe.
-                        if (ES_UNIX && exitCode == 0) {
+                        proceso.waitFor();
+                        System.out.println("Comparacion finalizada. Errores guardados en Errores.txt");
+                    }
+
+                } else {
+                    // Es 1 parametro - buscar usuario
+                    System.out.println("Comprobando usuario " + args[0] + " en sistema");
+
+                    if (ES_WINDOWS) {
+                        // net user es comando INTERNO, necesita cmd /c
+                        // Usar array para que Runtime procese correctamente la redirección
+                        String[] comandoArray = {"cmd", "/c", "net user " + args[0] + " 2>> Errores.txt"};
+                        proceso = rt.exec(comandoArray);
+                    } else {
+                        // id es comando EXTERNO en Unix
+                        String[] comandoArray = {"/bin/sh", "-c", "id -u " + args[0] + " 2>> Errores.txt"};
+                        proceso = rt.exec(comandoArray);
+                    }
+
+                    // Leer la salida sin mostrarla
+                    BufferedReader lector = new BufferedReader(
+                            new InputStreamReader(proceso.getInputStream()));
+                    String linea;
+                    boolean existe = false;
+
+                    while ((linea = lector.readLine()) != null) {
+                        // Comprobacion para Windows (español e ingles)
+                        if (ES_WINDOWS && (linea.contains("Nombre de usuario")
+                                || linea.contains("User name"))) {
                             existe = true;
                         }
+                    }
 
-                        if (existe) {
-                            System.out.println("El usuario " + args[0]
-                                    + " EXISTE (código de salida: " + exitCode + ")");
-                        } else {
-                            System.out.println("El usuario " + args[0]
-                                    + " NO EXISTE (código de salida: " + exitCode + ")");
-                        }
-                        proceso.waitFor();
+                    int exitCode = proceso.waitFor();
 
+                    // En sistemas Unix, id -u devuelve 0 si el usuario existe
+                    if (ES_UNIX && exitCode == 0) {
+                        existe = true;
+                    }
 
-                    } catch (IOException ioe) {
-                        System.out.println("Error al arrancar proceso"
-                                + pb.command());
-                    } catch (InterruptedException ex) {
-                        System.out.println("Proceso "
-                                + pb.command());
+                    // Mostrar solo el resultado final
+                    if (existe) {
+                        System.out.println("EXISTE");
+                    } else {
+                        System.out.println("NO EXISTE");
                     }
                 }
             }
-        } catch (FileNotFoundException fnfErrores) {
-            System.out.println("Error al crear o sobreescribir Fichero"
-                    + " Errores.txt");
+
         } catch (IOException ex) {
-            System.out.println("Error al escribir en fichero de errores");
-        } finally {
-            try {
-                ficheroErrores.close();
-            } catch (IOException ex) {
-                System.out.println("Error al cerrar Fichero errores");
-            }
+            System.out.println("Error al ejecutar proceso: " + ex.getMessage());
+        } catch (InterruptedException ex) {
+            System.out.println("Proceso interrumpido: " + ex.getMessage());
         }
     }
 }
