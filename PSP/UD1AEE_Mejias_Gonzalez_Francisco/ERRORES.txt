@@ -1,2 +1,0 @@
-FC: no se puede abrir C:\PRUEBA1: el archivo o carpeta no existe
-

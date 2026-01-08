@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -21,18 +20,11 @@ public class Utilidades {
         }
 
         Process proceso;
-        Runtime rt;
         boolean parametrosValidos = true;
 
-        rt = Runtime.getRuntime();
-
         try {
-            // Crear/limpiar archivo de errores
-            File archivoErrores = new File("Errores.txt");
-            if (archivoErrores.exists()) {
-                archivoErrores.delete();
-            }
-            archivoErrores.createNewFile();
+            // Crear archivo de errores (se sobrescribe en cada ejecución)
+            File archivoErrores = new File("Errores.DAT");
 
             if (args.length < 1 || args.length > 2) {
                 System.out.println("Error de formato, modo uso: ");
@@ -47,51 +39,54 @@ public class Utilidades {
             }
 
             if (parametrosValidos) {
+                ProcessBuilder pb;
+
                 // Si son 2 parametros --> Comparar ficheros
                 if (args.length == 2) {
                     System.out.println("Modo: Comparacion de ficheros");
 
-                    if (parametrosValidos) {
-                        if (ES_WINDOWS) {
-                            // fc es comando INTERNO, necesita cmd /c
-                            // Redirigir errores con 2>> al archivo usando array
-                            String[] comandoArray = {"cmd", "/c", "fc \"" + args[0] + "\" \"" + args[1] + "\" 2>> Errores.txt"};
-                            System.out.println("Ejecutando comparacion en Windows");
-                            proceso = rt.exec(comandoArray);
-                        } else {
-                            // diff es comando EXTERNO en Unix
-                            // Redirigir errores con 2>> al archivo usando shell
-                            String[] comandoArray = {"/bin/sh", "-c", "diff \"" + args[0] + "\" \"" + args[1] + "\" 2>> Errores.txt"};
-                            System.out.println("Ejecutando comparacion en Unix/Linux");
-                            proceso = rt.exec(comandoArray);
-                        }
-
-                        // Leer y mostrar la salida estándar
-                        BufferedReader lector = new BufferedReader(
-                                new InputStreamReader(proceso.getInputStream()));
-                        String linea;
-                        while ((linea = lector.readLine()) != null) {
-                            System.out.println(linea);
-                        }
-
-                        proceso.waitFor();
-                        System.out.println("Comparacion finalizada. Errores guardados en Errores.txt");
+                    if (ES_WINDOWS) {
+                        // fc es comando EXTERNO en Windows (ubicado en System32)
+                        pb = new ProcessBuilder("fc", args[0], args[1]);
+                        System.out.println("Ejecutando comparacion en Windows");
+                    } else {
+                        // diff es comando EXTERNO en Unix
+                        pb = new ProcessBuilder("diff", args[0], args[1]);
+                        System.out.println("Ejecutando comparacion en Unix/Linux");
                     }
+
+                    // Redirigir errores al archivo (se sobrescribe)
+                    pb.redirectError(ProcessBuilder.Redirect.to(archivoErrores));
+                    
+                    proceso = pb.start();
+
+                    // Leer y mostrar la salida estandar
+                    BufferedReader lector = new BufferedReader(
+                            new InputStreamReader(proceso.getInputStream()));
+                    String linea;
+                    while ((linea = lector.readLine()) != null) {
+                        System.out.println(linea);
+                    }
+
+                    proceso.waitFor();
+                    System.out.println("Comparacion finalizada. Errores guardados en Errores.DAT");
 
                 } else {
                     // Es 1 parametro - buscar usuario
                     System.out.println("Comprobando usuario " + args[0] + " en sistema");
 
                     if (ES_WINDOWS) {
-                        // net user es comando INTERNO, necesita cmd /c
-                        // Usar array para que Runtime procese correctamente la redirección
-                        String[] comandoArray = {"cmd", "/c", "net user " + args[0] + " 2>> Errores.txt"};
-                        proceso = rt.exec(comandoArray);
+                        // net user es comando EXTERNO en Windows (ubicado en System32)
+                        pb = new ProcessBuilder("net", "user", args[0]);
                     } else {
                         // id es comando EXTERNO en Unix
-                        String[] comandoArray = {"/bin/sh", "-c", "id -u " + args[0] + " 2>> Errores.txt"};
-                        proceso = rt.exec(comandoArray);
+                        pb = new ProcessBuilder("id", "-u", args[0]);
                     }
+
+                    // Redirigir errores al archivo (se sobrescribe)
+                    pb.redirectError(ProcessBuilder.Redirect.to(archivoErrores));
+                    
+                    proceso = pb.start();
 
                     // Leer la salida sin mostrarla
                     BufferedReader lector = new BufferedReader(
