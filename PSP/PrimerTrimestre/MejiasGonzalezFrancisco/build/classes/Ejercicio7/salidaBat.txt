@@ -1,0 +1,23 @@
+
+E:\DAM2\PSP\MejiasGonzalezFrancisco>MD NUEVO 
+
+E:\DAM2\PSP\MejiasGonzalezFrancisco>CD NUEVO 
+
+E:\DAM2\PSP\MejiasGonzalezFrancisco\NUEVO>ECHO CREO FICHERO 1>mifichero.txt 
+
+E:\DAM2\PSP\MejiasGonzalezFrancisco\NUEVO>DIR
+ El volumen de la unidad E es VBOX_CompartidaVB
+ El n£mero de serie del volumen es: 425D-C089
+
+ Directorio de E:\DAM2\PSP\MejiasGonzalezFrancisco\NUEVO
+
+02/11/2025  21:03    <DIR>          .
+02/11/2025  21:03    <DIR>          ..
+02/11/2025  21:03                14 mifichero.txt
+               1 archivos             14 bytes
+               2 dirs  183.851.655.168 bytes libres
+
+E:\DAM2\PSP\MejiasGonzalezFrancisco\NUEVO>DIRR
+
+E:\DAM2\PSP\MejiasGonzalezFrancisco\NUEVO>ECHO FIN COMANDOS 
+FIN COMANDOS
