@@ -2,10 +2,8 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantacin de la referencia de enlace (JAXB) XML v2.2.5-2 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perdern si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.12.15 a las 10:20:14 PM CET 
+// Generado el: AM.12.16 a las 08:49:05 AM CET 
 //
-
-
 package generated;
 
 import java.math.BigInteger;
@@ -17,12 +15,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * <p>Clase Java para TipoPruebas complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ *
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera
+ * que haya en esta clase.
+ *
  * <pre>
  * &lt;complexType name="TipoPruebas">
  *   &lt;complexContent>
@@ -76,8 +74,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoPruebas", propOrder = {
@@ -90,25 +88,25 @@ public class TipoPruebas {
 
     /**
      * Gets the value of the prueba property.
-     * 
+     *
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the prueba property.
-     * 
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the prueba property.
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPrueba().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link TipoPruebas.Prueba }
-     * 
-     * 
+     *
+     *
      */
     public List<TipoPruebas.Prueba> getPrueba() {
         if (prueba == null) {
@@ -117,12 +115,12 @@ public class TipoPruebas {
         return this.prueba;
     }
 
-
     /**
      * <p>Clase Java para anonymous complex type.
-     * 
-     * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
-     * 
+     *
+     * <p>El siguiente fragmento de esquema especifica el contenido que se
+     * espera que haya en esta clase.
+     *
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -166,8 +164,8 @@ public class TipoPruebas {
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
@@ -189,11 +187,9 @@ public class TipoPruebas {
 
         /**
          * Obtiene el valor de la propiedad nombrePrueba.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getNombrePrueba() {
             return nombrePrueba;
@@ -201,11 +197,9 @@ public class TipoPruebas {
 
         /**
          * Define el valor de la propiedad nombrePrueba.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setNombrePrueba(String value) {
             this.nombrePrueba = value;
@@ -213,7 +207,7 @@ public class TipoPruebas {
 
         /**
          * Obtiene el valor de la propiedad nota.
-         * 
+         *
          */
         public double getNota() {
             return nota;
@@ -221,7 +215,7 @@ public class TipoPruebas {
 
         /**
          * Define el valor de la propiedad nota.
-         * 
+         *
          */
         public void setNota(double value) {
             this.nota = value;
@@ -229,7 +223,7 @@ public class TipoPruebas {
 
         /**
          * Obtiene el valor de la propiedad peso.
-         * 
+         *
          */
         public int getPeso() {
             return peso;
@@ -237,7 +231,7 @@ public class TipoPruebas {
 
         /**
          * Define el valor de la propiedad peso.
-         * 
+         *
          */
         public void setPeso(int value) {
             this.peso = value;
@@ -245,11 +239,9 @@ public class TipoPruebas {
 
         /**
          * Obtiene el valor de la propiedad tipo.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getTipo() {
             return tipo;
@@ -257,11 +249,9 @@ public class TipoPruebas {
 
         /**
          * Define el valor de la propiedad tipo.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setTipo(String value) {
             this.tipo = value;
@@ -269,11 +259,9 @@ public class TipoPruebas {
 
         /**
          * Obtiene el valor de la propiedad numero.
-         * 
-         * @return
-         *     possible object is
-         *     {@link BigInteger }
-         *     
+         *
+         * @return possible object is {@link BigInteger }
+         *
          */
         public BigInteger getNumero() {
             return numero;
@@ -281,16 +269,12 @@ public class TipoPruebas {
 
         /**
          * Define el valor de la propiedad numero.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link BigInteger }
-         *     
+         *
+         * @param value allowed object is {@link BigInteger }
+         *
          */
         public void setNumero(BigInteger value) {
             this.numero = value;
         }
-
     }
-
 }

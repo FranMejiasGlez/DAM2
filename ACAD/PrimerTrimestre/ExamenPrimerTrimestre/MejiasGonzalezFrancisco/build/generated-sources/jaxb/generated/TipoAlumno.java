@@ -2,10 +2,8 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantacin de la referencia de enlace (JAXB) XML v2.2.5-2 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perdern si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.12.15 a las 10:20:14 PM CET 
+// Generado el: AM.12.16 a las 08:49:05 AM CET 
 //
-
-
 package generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,12 +11,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * <p>Clase Java para TipoAlumno complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ *
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera
+ * que haya en esta clase.
+ *
  * <pre>
  * &lt;complexType name="TipoAlumno">
  *   &lt;complexContent>
@@ -46,8 +44,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoAlumno", propOrder = {
@@ -66,11 +64,9 @@ public class TipoAlumno {
 
     /**
      * Obtiene el valor de la propiedad nombre.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getNombre() {
         return nombre;
@@ -78,11 +74,9 @@ public class TipoAlumno {
 
     /**
      * Define el valor de la propiedad nombre.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setNombre(String value) {
         this.nombre = value;
@@ -90,11 +84,9 @@ public class TipoAlumno {
 
     /**
      * Obtiene el valor de la propiedad apellidos.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getApellidos() {
         return apellidos;
@@ -102,11 +94,9 @@ public class TipoAlumno {
 
     /**
      * Define el valor de la propiedad apellidos.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setApellidos(String value) {
         this.apellidos = value;
@@ -114,11 +104,9 @@ public class TipoAlumno {
 
     /**
      * Obtiene el valor de la propiedad direccion.
-     * 
-     * @return
-     *     possible object is
-     *     {@link TipoDireccion }
-     *     
+     *
+     * @return possible object is {@link TipoDireccion }
+     *
      */
     public TipoDireccion getDireccion() {
         return direccion;
@@ -126,14 +114,11 @@ public class TipoAlumno {
 
     /**
      * Define el valor de la propiedad direccion.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TipoDireccion }
-     *     
+     *
+     * @param value allowed object is {@link TipoDireccion }
+     *
      */
     public void setDireccion(TipoDireccion value) {
         this.direccion = value;
     }
-
 }

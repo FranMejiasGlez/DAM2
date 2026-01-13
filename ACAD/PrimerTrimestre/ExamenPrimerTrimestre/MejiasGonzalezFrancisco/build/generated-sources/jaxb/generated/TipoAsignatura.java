@@ -2,10 +2,8 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantacin de la referencia de enlace (JAXB) XML v2.2.5-2 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perdern si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.12.15 a las 10:20:14 PM CET 
+// Generado el: AM.12.16 a las 08:49:05 AM CET 
 //
-
-
 package generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,12 +13,12 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-
 /**
  * <p>Clase Java para TipoAsignatura complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ *
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera
+ * que haya en esta clase.
+ *
  * <pre>
  * &lt;complexType name="TipoAsignatura">
  *   &lt;complexContent>
@@ -34,8 +32,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoAsignatura", propOrder = {
@@ -55,11 +53,9 @@ public class TipoAsignatura {
 
     /**
      * Obtiene el valor de la propiedad alumno.
-     * 
-     * @return
-     *     possible object is
-     *     {@link TipoAlumno }
-     *     
+     *
+     * @return possible object is {@link TipoAlumno }
+     *
      */
     public TipoAlumno getAlumno() {
         return alumno;
@@ -67,11 +63,9 @@ public class TipoAsignatura {
 
     /**
      * Define el valor de la propiedad alumno.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TipoAlumno }
-     *     
+     *
+     * @param value allowed object is {@link TipoAlumno }
+     *
      */
     public void setAlumno(TipoAlumno value) {
         this.alumno = value;
@@ -79,11 +73,9 @@ public class TipoAsignatura {
 
     /**
      * Obtiene el valor de la propiedad fechaAlta.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is {@link XMLGregorianCalendar }
+     *
      */
     public XMLGregorianCalendar getFechaAlta() {
         return fechaAlta;
@@ -91,11 +83,9 @@ public class TipoAsignatura {
 
     /**
      * Define el valor de la propiedad fechaAlta.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is {@link XMLGregorianCalendar }
+     *
      */
     public void setFechaAlta(XMLGregorianCalendar value) {
         this.fechaAlta = value;
@@ -103,11 +93,9 @@ public class TipoAsignatura {
 
     /**
      * Obtiene el valor de la propiedad pruebas.
-     * 
-     * @return
-     *     possible object is
-     *     {@link TipoPruebas }
-     *     
+     *
+     * @return possible object is {@link TipoPruebas }
+     *
      */
     public TipoPruebas getPruebas() {
         return pruebas;
@@ -115,14 +103,11 @@ public class TipoAsignatura {
 
     /**
      * Define el valor de la propiedad pruebas.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TipoPruebas }
-     *     
+     *
+     * @param value allowed object is {@link TipoPruebas }
+     *
      */
     public void setPruebas(TipoPruebas value) {
         this.pruebas = value;
     }
-
 }

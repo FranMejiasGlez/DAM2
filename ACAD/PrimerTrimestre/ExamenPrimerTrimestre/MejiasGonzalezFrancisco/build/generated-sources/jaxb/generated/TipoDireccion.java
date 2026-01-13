@@ -2,10 +2,8 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantacin de la referencia de enlace (JAXB) XML v2.2.5-2 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perdern si se vuelve a compilar el esquema de origen. 
-// Generado el: PM.12.15 a las 10:20:14 PM CET 
+// Generado el: AM.12.16 a las 08:49:05 AM CET 
 //
-
-
 package generated;
 
 import java.math.BigInteger;
@@ -14,12 +12,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * <p>Clase Java para TipoDireccion complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ *
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera
+ * que haya en esta clase.
+ *
  * <pre>
  * &lt;complexType name="TipoDireccion">
  *   &lt;complexContent>
@@ -61,8 +59,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TipoDireccion", propOrder = {
@@ -87,11 +85,9 @@ public class TipoDireccion {
 
     /**
      * Obtiene el valor de la propiedad calle.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getCalle() {
         return calle;
@@ -99,11 +95,9 @@ public class TipoDireccion {
 
     /**
      * Define el valor de la propiedad calle.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setCalle(String value) {
         this.calle = value;
@@ -111,11 +105,9 @@ public class TipoDireccion {
 
     /**
      * Obtiene el valor de la propiedad numero.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @return possible object is {@link BigInteger }
+     *
      */
     public BigInteger getNumero() {
         return numero;
@@ -123,11 +115,9 @@ public class TipoDireccion {
 
     /**
      * Define el valor de la propiedad numero.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @param value allowed object is {@link BigInteger }
+     *
      */
     public void setNumero(BigInteger value) {
         this.numero = value;
@@ -135,11 +125,9 @@ public class TipoDireccion {
 
     /**
      * Obtiene el valor de la propiedad poblacion.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getPoblacion() {
         return poblacion;
@@ -147,11 +135,9 @@ public class TipoDireccion {
 
     /**
      * Define el valor de la propiedad poblacion.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setPoblacion(String value) {
         this.poblacion = value;
@@ -159,11 +145,9 @@ public class TipoDireccion {
 
     /**
      * Obtiene el valor de la propiedad provincia.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getProvincia() {
         return provincia;
@@ -171,11 +155,9 @@ public class TipoDireccion {
 
     /**
      * Define el valor de la propiedad provincia.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setProvincia(String value) {
         this.provincia = value;
@@ -183,11 +165,9 @@ public class TipoDireccion {
 
     /**
      * Obtiene el valor de la propiedad codigoPostal.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getCodigoPostal() {
         return codigoPostal;
@@ -195,14 +175,11 @@ public class TipoDireccion {
 
     /**
      * Define el valor de la propiedad codigoPostal.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setCodigoPostal(String value) {
         this.codigoPostal = value;
     }
-
 }
