@@ -1,14 +1,18 @@
-package Ejercicio1;
+package Ejercicio5;
 
 public class HiloResta extends Thread {
 
     private int fin = 1;
+    private Contador contador;
+
+    public HiloResta(Contador contador) {
+        this.contador = contador;
+    }
 
     @Override
     public void run() {
         for (int i = 10000; i >= this.fin; i--) {
-
-            System.out.println("\r\t\t\tContador -: " + i);
+            contador.resta();
         }
     }
 }
