@@ -1,0 +1,50 @@
+-- Creación del usuario DAM2 con contraseña DAM2
+CREATE USER DAM2 IDENTIFIED BY DAM2;
+
+-- Asignación de permisos básicos (Standard en Oracle 8i)
+-- CONNECT: Permite loguearse.
+-- RESOURCE: Permite crear tablas, secuencias, etc.
+GRANT CONNECT, RESOURCE TO DAM2;
+
+-- (Opcional) Asignar cuota en el tablespace por defecto si es necesario
+GRANT UNLIMITED TABLESPACE TO DAM2;
+
+-- Crear tabla de Departamentos
+CREATE TABLE departamento (
+    id_depart INT PRIMARY KEY,
+    nombre_depart VARCHAR(50) NOT NULL
+);
+
+-- Crear tabla de Empleados con relación reflexiva
+CREATE TABLE empleado (
+    id_emple INT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    id_depart INT NOT NULL,
+    id_jefe INT,
+    puesto VARCHAR(50),
+    CONSTRAINT fk_depart FOREIGN KEY (id_depart) REFERENCES departamento(id_depart),
+    CONSTRAINT fk_jefe FOREIGN KEY (id_jefe) REFERENCES empleado(id_emple)
+);
+
+-- Insertar departamentos
+INSERT INTO departamento VALUES (1, 'Dirección');
+INSERT INTO departamento VALUES (2, 'Informática');
+INSERT INTO departamento VALUES (3, 'Recursos Humanos');
+INSERT INTO departamento VALUES (4, 'Ventas');
+
+-- Insertar empleados
+-- Jefe Supremo (sin jefe)
+INSERT INTO empleado VALUES (1, 'Juan', 'Pérez', 1, NULL, 'Director General');
+
+-- Jefes de departamento (con jefe = Director General)
+INSERT INTO empleado VALUES (2, 'María', 'García', 2, 1, 'Jefe de Informática');
+INSERT INTO empleado VALUES (3, 'Carlos', 'López', 3, 1, 'Jefe de RRHH');
+INSERT INTO empleado VALUES (4, 'Ana', 'Martínez', 4, 1, 'Jefe de Ventas');
+
+-- Empleados regulares
+INSERT INTO empleado VALUES (5, 'Pedro', 'Sánchez', 2, 2, 'Programador');
+INSERT INTO empleado VALUES (6, 'Laura', 'Jiménez', 2, 2, 'Analista');
+INSERT INTO empleado VALUES (7, 'Miguel', 'Rodríguez', 3, 3, 'Técnico RRHH');
+INSERT INTO empleado VALUES (8, 'Isabel', 'Fernández', 4, 4, 'Vendedor');
+INSERT INTO empleado VALUES (9, 'Luis', 'González', 4, 4, 'Vendedor');
