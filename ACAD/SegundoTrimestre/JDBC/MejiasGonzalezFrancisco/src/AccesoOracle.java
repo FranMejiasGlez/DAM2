@@ -2,6 +2,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 /**
  * *
@@ -14,7 +17,24 @@ public class AccesoOracle {
 
     public static void main(String[] args) {
         // Inicializar
-        gestion = new GestionPRUEBA();
+        Properties propiedades = new Properties();
+        try {
+            propiedades.load(new FileInputStream("src/Oracle.properties"));
+        } catch (IOException e) {
+            System.out.println("Error al cargar archivo de propiedades: " + e.getMessage());
+            return;
+        }
+        /*String nombreDriver = "sun.jdbc.odbc.JdbcOdbcDriver";
+         * String urlConexion = "jdbc:odbc:PruebaOra";
+         * String usuario = "DAM2";
+         * String contra = "DAM2";*/
+        // Inicializar con valores del archivo properties
+        String nombreDriver = propiedades.getProperty("driver");
+        String urlConexion = propiedades.getProperty("url");
+        String usuario = propiedades.getProperty("usuario");
+        String contra = propiedades.getProperty("password");
+
+        gestion = new GestionPRUEBA(nombreDriver, urlConexion, usuario, contra);
         teclado = new BufferedReader(new InputStreamReader(System.in));
 
         boolean salir = false;

@@ -10,7 +10,7 @@ import java.util.Properties;
  * *
  * @author Mejias Gonzalez Francisco
  */
-public class AccesoJavaDB {
+public class AccesoAccess {
 
     private static GestionPRUEBA gestion;
     private static BufferedReader teclado;
@@ -19,14 +19,14 @@ public class AccesoJavaDB {
         // Inicializar
         Properties propiedades = new Properties();
         try {
-            propiedades.load(new FileInputStream("src/BBDD.properties"));
+            propiedades.load(new FileInputStream("src/Access.properties"));
         } catch (IOException e) {
             System.out.println("Error al cargar archivo de propiedades: " + e.getMessage());
             return;
         }
-        /*String nombreDriver = "org.apache.derby.jdbc.ClientDriver";
-         * String urlConexion = "jdbc:derby://localhost:1527/PRUEBA";
-         * String usuario = "DAM2";
+        /*String nombreDriver = "sun.jdbc.odbc.JdbcOdbcDriver";
+         * String urlConexion = "jdbc:odbc:PRUEBAACCESS";
+         * String usuario = "Admin";
          * String contra = "DAM2";*/
         // Inicializar con valores del archivo properties
         String nombreDriver = propiedades.getProperty("driver");

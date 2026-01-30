@@ -10,7 +10,7 @@ import java.util.Properties;
  * *
  * @author Mejias Gonzalez Francisco
  */
-public class AccesoJavaDB {
+public class AccesoMySql {
 
     private static GestionPRUEBA gestion;
     private static BufferedReader teclado;
@@ -19,13 +19,13 @@ public class AccesoJavaDB {
         // Inicializar
         Properties propiedades = new Properties();
         try {
-            propiedades.load(new FileInputStream("src/BBDD.properties"));
+            propiedades.load(new FileInputStream("src/MySql.properties"));
         } catch (IOException e) {
             System.out.println("Error al cargar archivo de propiedades: " + e.getMessage());
             return;
         }
-        /*String nombreDriver = "org.apache.derby.jdbc.ClientDriver";
-         * String urlConexion = "jdbc:derby://localhost:1527/PRUEBA";
+        /*String nombreDriver = "sun.jdbc.odbc.JdbcOdbcDriver";
+         * String urlConexion = "jdbc:mysql://172.22.103.7:3306/prueba";
          * String usuario = "DAM2";
          * String contra = "DAM2";*/
         // Inicializar con valores del archivo properties
@@ -33,7 +33,6 @@ public class AccesoJavaDB {
         String urlConexion = propiedades.getProperty("url");
         String usuario = propiedades.getProperty("usuario");
         String contra = propiedades.getProperty("password");
-
         gestion = new GestionPRUEBA(nombreDriver, urlConexion, usuario, contra);
         teclado = new BufferedReader(new InputStreamReader(System.in));
 

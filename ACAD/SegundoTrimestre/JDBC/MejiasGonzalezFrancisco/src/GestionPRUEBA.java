@@ -15,15 +15,18 @@ import java.sql.SQLException;
  */
 public class GestionPRUEBA {
 
-    //  private String nombreDriver = "org.apache.derby.jdbc.ClientDriver";
-    private String nombreDriver = "sun.jdbc.odbc.JdbcOdbcDriver";
+    //  private
+    private String nombreDriver;
     Connection conexion;
-    // private String urlConexion = "jdbc:derby://localhost:1527/PRUEBA";
-    private String urlConexion = "jdbc:odbc:PruebaOra";
-    private String usuario = "DAM2";
-    private String contra = "DAM2";
+    private String urlConexion;
+    private String usuario;
+    private String contra;
 
-    public GestionPRUEBA() {
+    public GestionPRUEBA(String nombreDriver, String urlConexion, String usuario, String contraseña) {
+        this.nombreDriver = nombreDriver;
+        this.urlConexion = urlConexion;
+        this.usuario = usuario;
+        this.contra = contraseña;
         try {
             try {
                 Class.forName(nombreDriver);
