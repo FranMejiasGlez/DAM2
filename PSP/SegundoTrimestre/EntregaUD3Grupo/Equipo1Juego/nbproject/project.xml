@@ -16,7 +16,7 @@
             </extension>
         </buildExtensions>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>MejiasJanEquipo1Juego</name>
+            <name>Equipo1Juego</name>
             <explicit-platform explicit-source-supported="true"/>
             <source-roots>
                 <root id="src.dir"/>
