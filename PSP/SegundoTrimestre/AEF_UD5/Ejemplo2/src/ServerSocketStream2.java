@@ -1,5 +1,6 @@
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
@@ -18,15 +19,15 @@ public class ServerSocketStream2 {
     public static void main(String[] args) {
         ServerSocket server;
         Socket socketCliente, socketServer;
-        BufferedReader comunicacion;
+        DataInputStream comunicacion;
         try {
             server = new ServerSocket(5000);
             System.out.println("Servidor escuchando por: " + server.getLocalPort());
             for (int i = 1; i <= 5; i++) {
                 socketCliente = server.accept();//Recibe el socket de conexion de cliente
                 if (socketCliente.isConnected()) {
-                    comunicacion = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
-                    System.out.println(comunicacion.readLine());
+                    comunicacion = new DataInputStream((socketCliente.getInputStream()));
+                    System.out.println(comunicacion.readUTF());
                     comunicacion.close();
                     socketCliente.close();
                     System.out.println("Socket cliente cerrado");

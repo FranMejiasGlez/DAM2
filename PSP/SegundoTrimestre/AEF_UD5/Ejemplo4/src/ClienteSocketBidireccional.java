@@ -1,6 +1,7 @@
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -24,9 +25,8 @@ public class ClienteSocketBidireccional {
         Socket cliente = null;
 
         InetAddress ipLocal = null;
-        BufferedWriter salida;
+        DataOutputStream salida;
         BufferedReader llegada;
-
 
         try {
             ipLocal = InetAddress.getLocalHost();
@@ -40,13 +40,12 @@ public class ClienteSocketBidireccional {
         }
         try {
             try {
-                salida = new BufferedWriter(new OutputStreamWriter(cliente.getOutputStream()));
+                salida = new DataOutputStream((cliente.getOutputStream()));
                 System.out.println("Escribe un mensaje: ");
 
                 String texto = "Hola mi ip es: " + ipLocal.getHostAddress();
-                salida.write(texto);
-                salida.newLine();
-                salida.flush();
+                salida.writeUTF(texto);
+
                 llegada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
                 System.out.println(llegada.readLine());//Aqui debo leer lo que me envio el servidor
                 cliente.close();
@@ -56,6 +55,12 @@ public class ClienteSocketBidireccional {
         } catch (IOException ex) {
             System.out.println("Error en la conexión: " + ex.getMessage());
             System.out.println("Tipo de error: " + ex.getClass().getSimpleName());
+        }finally{
+            try {
+                cliente.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ClienteSocketBidireccional.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

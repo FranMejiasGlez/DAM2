@@ -1,5 +1,6 @@
 
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
@@ -22,7 +23,7 @@ public class ClienteSocketStream {
         Socket cliente = null;
 
         InetAddress ipLocal = null;
-        BufferedWriter salida;
+        DataOutputStream salida;
         try {
             ipLocal = InetAddress.getLocalHost();
         } catch (UnknownHostException ex) {
@@ -37,18 +38,21 @@ public class ClienteSocketStream {
         }
         try {
             try {
-                salida = new BufferedWriter(new OutputStreamWriter(cliente.getOutputStream()));
+                salida = new DataOutputStream((cliente.getOutputStream()));
 
                 String texto = "Hola mi ip es: " + ipLocal.getHostAddress();
-                salida.write(texto);
-                salida.newLine();
-                salida.flush();
+                salida.writeUTF(texto);
                 cliente.close();
             } catch (NullPointerException npe) {
                 System.out.println("No pudo establecerse la conexion");
             }
         } catch (IOException ex) {
             System.out.println("Error de E/S con canal de comunicacion");
+        }
+        try {
+            cliente.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocketStream.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

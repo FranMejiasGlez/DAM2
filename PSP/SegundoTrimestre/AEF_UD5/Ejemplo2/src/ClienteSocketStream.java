@@ -1,6 +1,7 @@
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -24,7 +25,7 @@ public class ClienteSocketStream {
         Socket cliente = null;
 
         InetAddress ipLocal = null;
-        BufferedWriter salida;
+        DataOutputStream salida;
         BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
         try {
             ipLocal = InetAddress.getLocalHost();
@@ -38,19 +39,23 @@ public class ClienteSocketStream {
         }
         try {
             try {
-                salida = new BufferedWriter(new OutputStreamWriter(cliente.getOutputStream()));
+                salida = new DataOutputStream((cliente.getOutputStream()));
                 System.out.println("Escribe un mensaje: ");
                 String texto;
                 texto = teclado.readLine();
-                salida.write(texto);
-                salida.newLine();
-                salida.flush();
+                salida.writeUTF(texto);
                 cliente.close();
             } catch (NullPointerException npe) {
                 System.out.println("La conexion no ha podido establecerse");
             }
         } catch (IOException ex) {
             Logger.getLogger(ClienteSocketStream.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                cliente.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ClienteSocketStream.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
