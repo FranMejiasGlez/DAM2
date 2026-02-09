@@ -1,0 +1,16 @@
+1. Crear proyecto en Eclipse
+2. Click derecho en el proyecto --> Build Path
+3. Configure build path
+4. Pestaña libraries
+5. Add library 
+6. Connectivity driver definition
+7. Seleccionar driver MySql
+8. Click derecho en el proyecto --> new --> other
+9. Seleccionar hibernate.cfg.xml
+10. Lo dejamos en src por ahora
+11. En la pantalla de configuracion:
+		Database dialect: MySQL; 
+		Diver class: driver mysql; 
+		connection url: localhost/prueba;
+		usuario: DAM2;
+		contraseña: DAM2
