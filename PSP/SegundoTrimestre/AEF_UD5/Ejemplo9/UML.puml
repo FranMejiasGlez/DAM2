@@ -1,0 +1,25 @@
+@startuml
+annotation java.lang.Override
+class ColaBuffer
+class Consumidor
+class Main
+class Productor
+class java.lang.Thread
+class java.util.LinkedList
+class java.util.Queue
+class java.util.Random
+class java.util.logging.Level
+class java.util.logging.Logger
+ColaBuffer ..> java.util.LinkedList
+ColaBuffer ..> java.util.Queue
+ColaBuffer ..> java.util.logging.Level
+ColaBuffer ..> java.util.logging.Logger
+Consumidor ..> java.lang.Override
+Consumidor --|> java.lang.Thread
+Consumidor ..> java.util.logging.Level
+Consumidor ..> java.util.logging.Logger
+Productor --|> java.lang.Thread
+Productor ..> java.util.Random
+Productor ..> java.util.logging.Level
+Productor ..> java.util.logging.Logger
+@enduml
