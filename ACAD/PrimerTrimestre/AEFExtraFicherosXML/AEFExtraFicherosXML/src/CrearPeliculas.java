@@ -52,8 +52,8 @@ public class CrearPeliculas {
     public static void main(String[] args) {
         try {
             TransformerFactory tf = TransformerFactory.newInstance();
-            Transformer t = tf.newTransformer();
             HashSet<String> peliculasAniadidas = new HashSet<String>();
+            Transformer t = tf.newTransformer();
             XPathFactory xpf = XPathFactory.newInstance();
             XPath xpath = xpf.newXPath();
             DOMSource source;
